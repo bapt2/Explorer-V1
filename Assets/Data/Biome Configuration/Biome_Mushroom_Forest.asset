@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b26cfbd11b0f47428b386fd5515ee63, type: 3}
+  m_Name: Biome_Mushroom_Forest
+  m_EditorClassIdentifier: 
+  Name: Mushroom Forest
+  minIntensity: 0.202
+  maxIntensity: 0.555
+  minDecayRate: 0.393
+  maxDecayRate: 0.566
+  heightModifier: {fileID: 4594176204224806916, guid: 64db4c7fffa34434daece54b412faec4, type: 3}
+  terrainPainter: {fileID: 9075797744356525698, guid: 13cbda00edec99043befc2d658a2f8a5, type: 3}
+  objectPlacer: {fileID: 5363260531851314963, guid: ab65d979dc2a60941b27c304e72a813a, type: 3}

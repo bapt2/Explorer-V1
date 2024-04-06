@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b26cfbd11b0f47428b386fd5515ee63, type: 3}
+  m_Name: Biome_Forest
+  m_EditorClassIdentifier: 
+  Name: ' Forest'
+  minIntensity: 0.5
+  maxIntensity: 0.8
+  minDecayRate: 0.1
+  maxDecayRate: 0.2
+  heightModifier: {fileID: 4594176204224806916, guid: 911f8391ae78b8349ab911bcd492534b, type: 3}
+  terrainPainter: {fileID: 9075797744356525698, guid: de6864c65af3e6d419bed842a9d4d8f3, type: 3}
+  objectPlacer: {fileID: 5363260531851314963, guid: 233ea9740d8b2ce48828abee888bfcfd, type: 3}
+  detailPainter: {fileID: 3284971408430068262, guid: d8acf8053571bec4596b2a1ae51e8d04, type: 3}
