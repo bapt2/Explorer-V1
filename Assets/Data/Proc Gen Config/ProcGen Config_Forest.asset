@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ProcGen Config_Forest
   m_EditorClassIdentifier: 
   biomes:
-  - biome: {fileID: 11400000, guid: 50c34e030a3e1ab448702c17cc09aa0b, type: 2}
-    wheighting: 0.5
   - biome: {fileID: 11400000, guid: 36ed3d8a44c5afc419d0318a64dff497, type: 2}
     wheighting: 0.75
+  - biome: {fileID: 11400000, guid: 50c34e030a3e1ab448702c17cc09aa0b, type: 2}
+    wheighting: 0.25
   - biome: {fileID: 11400000, guid: c895e420bb9876e48ab1cd3ca535b5c1, type: 2}
     wheighting: 0.25
-  - biome: {fileID: 11400000, guid: 50c34e030a3e1ab448702c17cc09aa0b, type: 2}
+  - biome: {fileID: 11400000, guid: c6b0fcc1c9b5db04ebce715142e51ec1, type: 2}
     wheighting: 0.5
   biomeGenerators: {fileID: 398780153279912220, guid: 1dd5b8a31b372a249a13d16c48e3df9c, type: 3}
   initialHeightModifier: {fileID: 713746363119422602, guid: 7d869c367dab69f49a8307bee64992c1, type: 3}

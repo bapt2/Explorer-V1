@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b26cfbd11b0f47428b386fd5515ee63, type: 3}
+  m_Name: Biome_Magic_Forest
+  m_EditorClassIdentifier: 
+  Name: Magic Forest
+  minIntensity: 0.064
+  maxIntensity: 0.5
+  minDecayRate: 0.1
+  maxDecayRate: 0.15
+  heightModifier: {fileID: 4594176204224806916, guid: 7b248bf78b7116740abb53b17157542b, type: 3}
+  terrainPainter: {fileID: 9075797744356525698, guid: 64331a55684589c44a442252dc9fecfe, type: 3}
+  objectPlacer: {fileID: 0}
+  detailPainter: {fileID: 3284971408430068262, guid: 634165c9eb299a64aa5665966de5aeb8, type: 3}

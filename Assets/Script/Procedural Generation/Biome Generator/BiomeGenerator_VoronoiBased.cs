@@ -90,17 +90,6 @@ public class BiomeGenerator_VoronoiBased : BaseBiomeMapGenerator
 #endif // UNITY_EDITOR
     }
 
-    Vector2Int[] neighbourOffsets = new Vector2Int[]{
-        new Vector2Int(0,1),
-        new Vector2Int(0,-1),
-        new Vector2Int(1,0),
-        new Vector2Int(-1,0),
-        new Vector2Int(1,1),
-        new Vector2Int(-1,-1),
-        new Vector2Int(1,-1),
-        new Vector2Int(-1,1),
-};
-
     byte FindClosestBiome(int x, int y, int numCells, int cellSize, Vector3Int[] biomeSeeds)
     {
         int cellX = x / cellSize;

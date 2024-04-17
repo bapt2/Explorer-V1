@@ -9,6 +9,7 @@ public class InteractManager : MonoBehaviour
     public GameObject portalPanel;
 
     public GameObject player;
+    BaseItem item;
 
     private void OnTriggerStay(Collider other)
     {
@@ -19,8 +20,8 @@ public class InteractManager : MonoBehaviour
         else if (other.CompareTag("PortalRangeReturn") && Input.GetKeyDown(KeyCode.E))
         {
             SceneManager.LoadScene("Hub");
+            PlayerController.instance.gameObject.transform.position = new Vector3(0f, 1f, 0f);
         }
-        
     }
 
 

@@ -13,17 +13,11 @@ MonoBehaviour:
   m_Name: ProcGen Config_Island
   m_EditorClassIdentifier: 
   biomes:
-  - biome: {fileID: 11400000, guid: 50c34e030a3e1ab448702c17cc09aa0b, type: 2}
-    wheighting: 0.5
-  - biome: {fileID: 11400000, guid: 36ed3d8a44c5afc419d0318a64dff497, type: 2}
-    wheighting: 0.75
-  - biome: {fileID: 11400000, guid: c895e420bb9876e48ab1cd3ca535b5c1, type: 2}
-    wheighting: 0.25
-  - biome: {fileID: 11400000, guid: 50c34e030a3e1ab448702c17cc09aa0b, type: 2}
-    wheighting: 0.5
-  biomeGenerators: {fileID: 398780153279912220, guid: 1dd5b8a31b372a249a13d16c48e3df9c, type: 3}
+  - biome: {fileID: 11400000, guid: 67cf326f5a7644d47acb227a2ca7078f, type: 2}
+    wheighting: 1
+  biomeGenerators: {fileID: 398780153279912220, guid: 1ed105bcdff81dd4eb7562cef8cba0b8, type: 3}
   initialHeightModifier: {fileID: 713746363119422602, guid: 9a2625e0460e84b47ba512a64bdbf694, type: 3}
-  HeightPostProcessingModifier: {fileID: 713746363119422602, guid: 7fd8ede38bc5ead459aae70928f7713f, type: 3}
-  paintingPostProcessingModifier: {fileID: 8606308595510007272, guid: deaafabc58fa6ff43b8018a5d1f37a42, type: 3}
+  HeightPostProcessingModifier: {fileID: 713746363119422602, guid: a11aa5358856a504db44c7cd7a602b1c, type: 3}
+  paintingPostProcessingModifier: {fileID: 8606308595510007272, guid: 11b24485bfc5e5848bbf77e267916c2f, type: 3}
   detailPaintingPostProcessingModifier: {fileID: 0}
   waterHeight: 8.5

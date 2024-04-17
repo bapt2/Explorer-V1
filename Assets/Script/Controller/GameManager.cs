@@ -5,14 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public InventoryManager inventoryManager;
+    public GameObject inventoryPanel;
+    public int amount;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !inventoryManager.inventoryIsOpen)
         {
-            if (!DataPersistanceManager.instance.disableDataPersistence)
-                DataPersistanceManager.instance.SaveGame();
+            DataPersistanceManager.instance.SaveGame();
             SceneManager.LoadScene("Main Menu");
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && inventoryManager.inventoryIsOpen)
+        {
+            inventoryPanel.SetActive(false);
+            PlayerController.instance.enabled = true;
+            CameraController.instance.enabled = true;
         }
     }
 }

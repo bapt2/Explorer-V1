@@ -53,14 +53,6 @@ MonoBehaviour:
     Wheighting: 1
     prefabs:
     - {fileID: 2081764213509264228, guid: ab36840ea7b96a8489df0ab41d563599, type: 3}
-  - hasHeightLimite: 0
-    minHeightToSpawn: 0
-    MaxHeightToSpawn: 0
-    canGoInWater: 0
-    canGoAboveWater: 1
-    Wheighting: 0.25
-    prefabs:
-    - {fileID: 516250220116659175, guid: f77e52bbfffdb20468558fde0dcf1177, type: 3}
   targetDensity: 0.1
   maxSpawnCount: 2000
   maxInvalidLocationSkips: 10

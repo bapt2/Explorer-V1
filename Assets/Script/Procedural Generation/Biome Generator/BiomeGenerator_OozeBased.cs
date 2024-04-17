@@ -67,17 +67,7 @@ public class BiomeGenerator_OozeBased : BaseBiomeMapGenerator
 #endif // UNITY_EDITOR
     }
 
-    Vector2Int[] neighbourOffsets = new Vector2Int[]
-    {
-        new Vector2Int(0,1),
-        new Vector2Int(0,-1),
-        new Vector2Int(1,0),
-        new Vector2Int(-1,0),
-        new Vector2Int(1,1),
-        new Vector2Int(-1,-1),
-        new Vector2Int(1,-1),
-        new Vector2Int(-1,1),
-    };
+
 
     void Perform_SpawnIndividualBiome(ProcGenManager.GenerationData generationData, byte biomeIndex, Vector2Int spawnLocation, int mapResolution)
     {

@@ -1,17 +1,37 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody rb;
+    public Rigidbody rb;
     public float speed;
     public float jumpForce;
     private bool isJumping = false;
     public bool isGrounded = true;
-    public Transform cam;
+
+    public static PlayerController instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("more than one instance of PlayerController in the scene, newest Destroy");
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+
+    }
 
     private void Start()
     {
-        cam = FindObjectOfType<Camera>().transform;
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+            gameObject.SetActive(false);
+        else
+            gameObject.SetActive(true);
+
+        DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody>();
     }
 
@@ -36,8 +56,8 @@ public class PlayerController : MonoBehaviour
     {
 
         // camera direction
-        Vector3 camForward = cam.forward;
-        Vector3 camRight = cam.right;
+        Vector3 camForward = CameraController.instance.transform.forward;
+        Vector3 camRight = CameraController.instance.transform.right;
 
         camForward.y = 0;
         camRight.y = 0;
@@ -68,6 +88,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
         }
     }
 }

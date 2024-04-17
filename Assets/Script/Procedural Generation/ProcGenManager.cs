@@ -71,9 +71,7 @@ public class ProcGenManager : MonoBehaviour
     }
 
     [SerializeField] protected int maxInvalidLocationSkips = 10;
-    [SerializeField] GameObject playerPrefab;
-
-
+    
     [SerializeField] ProcGenConfigSO config;
     [SerializeField] Terrain targetTerrain;
     [SerializeField] int seed;
@@ -184,7 +182,7 @@ public class ProcGenManager : MonoBehaviour
         // place the object
         Perform_ObjectPlacement();
 
-        Perform_PlayerSpawn();
+        Perform_SpecifiqueSpawn();
 
         // paint the details
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.DetailPainting, "Painting details");
@@ -571,11 +569,11 @@ public class ProcGenManager : MonoBehaviour
 
     }
 
-    void Perform_PlayerSpawn()
+    void Perform_SpecifiqueSpawn()
     {
         var spawnLocations = GetPositionForPlayerSpawn(data.mapResolution, data.heightMap, data.heightmapScale);
 
-        ExecuteSpawningPlayer(data, spawnLocations, playerPrefab);
+        ChangingPlayerPosition(data, spawnLocations);
     }
 
     void Perform_DetailPainting()
@@ -632,14 +630,14 @@ public class ProcGenManager : MonoBehaviour
             {
                 float height = heightMap[x, y] * heightmapScale.y;
 
-                locations.Add(new Vector3(y * heightmapScale.z, height, x * heightmapScale.x));
+                locations.Add(new Vector3(y * heightmapScale.z, height + 1, x * heightmapScale.x));
             }
         }
 
         return locations;
     }
 
-    void ExecuteSpawningPlayer(ProcGenManager.GenerationData generationData, List<Vector3> randomLocation, GameObject prefab)
+    void ChangingPlayerPosition(GenerationData generationData, List<Vector3> randomLocation)
     {
         int skipCount = 0;
         int numPlaced = 0;
@@ -667,10 +665,7 @@ public class ProcGenManager : MonoBehaviour
             numPlaced++;
 
             randomLocation.RemoveAt(randomLocationIndex);
-
-            Instantiate(prefab, spawnLocation, Quaternion.identity);
-            break;
+            PlayerController.instance.transform.position = spawnLocation;
         }
-        Debug.Log($"Placed {playerPrefab.name}");
     }
 }

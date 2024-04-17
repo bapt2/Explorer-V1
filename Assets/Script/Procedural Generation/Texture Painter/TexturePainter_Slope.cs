@@ -19,6 +19,8 @@ public class TexturePainter_Slope : BaseTexturePainter
                 // skip if we have a biome and this is not our biome
                 if (biomeIndex >= 0 && generationData.biomeMap[heightMapX, heightMapY] != biomeIndex)
                     continue;
+                if (generationData.biomeMap[heightMapX, heightMapY] > generationData.globalConfig.waterHeight)
+                    continue;
 
                 generationData.alphaMap[x, y, textureLayer] = strength * intensityVsSlope.Evaluate(1f - generationData.slopeMap[x,y]);
             }

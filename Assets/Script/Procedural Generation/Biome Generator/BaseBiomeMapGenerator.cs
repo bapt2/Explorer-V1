@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 
 public class BaseBiomeMapGenerator : MonoBehaviour
@@ -11,6 +10,18 @@ public class BaseBiomeMapGenerator : MonoBehaviour
         WeightedRandom,
         ZoneBasedWeightedRandom
     }
+
+    protected Vector2Int[] neighbourOffsets = new Vector2Int[]
+    {
+        new Vector2Int(0,1),
+        new Vector2Int(0,-1),
+        new Vector2Int(1,0),
+        new Vector2Int(-1,0),
+        new Vector2Int(1,1),
+        new Vector2Int(-1,-1),
+        new Vector2Int(1,-1),
+        new Vector2Int(-1,1),
+    };
 
     [System.Serializable]
     public class ZoneConfig
@@ -106,6 +117,40 @@ public class BaseBiomeMapGenerator : MonoBehaviour
         return biomeIndex;
     }
 
+    /*byte PickBiomeType_ZoneBasedWeightedRandom(ProcGenManager.GenerationData generationData, Vector2 normalisedLocation)
+    {
+        List<Tuple<byte, float>> weightedBiomeOptions = new();
+        float totalWeight = 0f;
+
+        foreach (var zone in zones)
+        {
+            float weight = zone.GetWeightForLocation(normalisedLocation);
+            if (weight <= 0f)
+                continue;
+
+            byte biomeIndex = generationData.globalConfig.GetIndexForBiome(zone.biome);
+            if (biomeIndex == byte.MaxValue)
+                continue;
+
+            weightedBiomeOptions.Add(new Tuple<byte, float>(biomeIndex, weight + totalWeight));
+
+            totalWeight += weight;
+        }
+
+        if (totalWeight > 0f)
+        {
+            float roll = generationData.Random(0f, totalWeight);
+            foreach (var weightedBiome in weightedBiomeOptions)
+            {
+                if (roll <= weightedBiome.Item2)
+                    return weightedBiome.Item1;
+            }
+        }
+        // Debug.Log((byte)generationData.Random(0, generationData.globalConfig.numBiomes));
+
+        return (byte)generationData.Random(0, generationData.globalConfig.numBiomes);
+    }*/
+
     byte PickBiomeType_ZoneBasedWeightedRandom(ProcGenManager.GenerationData generationData, Vector2 normalisedLocation)
     {
         List<Tuple<byte, float>> weightedBiomeOptions = new();
@@ -118,7 +163,6 @@ public class BaseBiomeMapGenerator : MonoBehaviour
                 continue;
 
             byte biomeIndex = generationData.globalConfig.GetIndexForBiome(zone.biome);
-            //Debug.Log(biomeIndex);
             if (biomeIndex == byte.MaxValue)
                 continue;
 

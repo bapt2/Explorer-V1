@@ -9,7 +9,7 @@ public class ObjectPlacers_Random : BaseObjectPlacers
         base.Execute(generationData, biomeIndex, biome);
         
             // get potential spawn location
-        List<Vector3> candidateLocations = GetAllLocationsForBiome(generationData.globalConfig, generationData.mapResolution, generationData.heightMap, generationData.heightmapScale, generationData.biomeMap, biomeIndex);
+        List<Vector3> candidateLocations = GetAllLocationsForBiome(generationData, biomeIndex);
 
         ExecuteSimpleSpawning(generationData, candidateLocations, generationData.objectRoot);
     }

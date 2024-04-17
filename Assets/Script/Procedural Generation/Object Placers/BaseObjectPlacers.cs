@@ -30,20 +30,20 @@ public class BaseObjectPlacers : MonoBehaviour
     [SerializeField] protected int maxInvalidLocationSkips = 10;
     [SerializeField] protected float maxPositionJitter = 0.15f;
 
-    protected List<Vector3> GetAllLocationsForBiome(ProcGenConfigSO globalConfig, int mapResolution, float[,] heightMap, Vector3 heightmapScale, byte[,] biomeMap, int biomeIndex)
+    protected List<Vector3> GetAllLocationsForBiome(ProcGenManager.GenerationData generationData, int biomeIndex)
     {
-        List<Vector3> locations = new List<Vector3>(mapResolution * mapResolution / 10);
+        List<Vector3> locations = new List<Vector3>(generationData.mapResolution * generationData.mapResolution / 10);
 
-        for (int y = 0; y < mapResolution; y++)
+        for (int y = 0; y < generationData.mapResolution; y++)
         {
-            for (int x = 0; x < mapResolution; x++)
+            for (int x = 0; x < generationData.mapResolution; x++)
             {
-                if (biomeMap[x, y] != biomeIndex)
+                if (generationData.biomeMap[x, y] != biomeIndex)
                     continue;
 
-                float height = heightMap[x, y] * heightmapScale.y;
+                float height = generationData.heightMap[x, y] * generationData.heightmapScale.y;
 
-                locations.Add(new Vector3(y * heightmapScale.z, height, x * heightmapScale.x));
+                locations.Add(new Vector3(y * generationData.heightmapScale.z, height, x * generationData.heightmapScale.x));
             }
         }
 
@@ -115,7 +115,7 @@ public class BaseObjectPlacers : MonoBehaviour
 
                 SpawnObject(generationData, prefab, spawnLocation);
             }
-            //Debug.Log($"Placed {numPlaced} objects out of {numToSpawn} for {prefab.name}");
+            Debug.Log($"Placed {numPlaced} objects out of {numToSpawn} for {prefab.name}");
         }
     }
 

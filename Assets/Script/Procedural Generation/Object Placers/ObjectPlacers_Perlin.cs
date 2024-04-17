@@ -1,3 +1,5 @@
+// temporary inavailible du to conflict between 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,28 +14,32 @@ public class ObjectPlacers_Perlin : BaseObjectPlacers
     [SerializeField] Vector2 noiseScale = new Vector2(1f / 128f, 1f / 128f);
     [SerializeField] float noiseThreshold = 0.5f;
 
-    List<Vector3> GetFilteredLocationsForBiome(ProcGenConfigSO globalConfig, int mapResolution, float[,] heightMap, Vector3 heightmapScale, byte[,] biomeMap, int biomeIndex)
+    List<Vector3> GetFilteredLocationsForBiome(ProcGenManager.GenerationData generationData, int biomeIndex)
     {
-        List<Vector3> locations = new List<Vector3>(mapResolution * mapResolution / 10);
 
-        for (int y = 0; y < mapResolution; y++)
+
+        List<Vector3> locations = new List<Vector3>(generationData.mapResolution * generationData.mapResolution / 10);
+
+        for (int y = 0; y < generationData.mapResolution; y++)
         {
-            for (int x = 0; x < mapResolution; x++)
+            for (int x = 0; x < generationData.mapResolution; x++)
             {
-                if (biomeMap[x, y] != biomeIndex)
+                if (generationData.biomeMap[x, y] != biomeIndex)
                     continue;
 
                 float noiseValue = Mathf.PerlinNoise(x * noiseScale.x, y * noiseScale.y);
 
                 // noise must be above the threshold to be considered a candidate point
                 if (noiseValue < noiseThreshold)
+                {
                     continue;
+                }
 
-                float height = heightMap[x, y] * heightmapScale.y;
+                float height = generationData.heightMap[x, y] * generationData.heightmapScale.y;
 
 
 
-                locations.Add(new Vector3(y * heightmapScale.z, height, x * heightmapScale.x));
+                locations.Add(new Vector3(y * generationData.heightmapScale.z, height, x * generationData.heightmapScale.x));
             }
         }
 
@@ -42,12 +48,16 @@ public class ObjectPlacers_Perlin : BaseObjectPlacers
 
     public override void Execute(ProcGenManager.GenerationData generationData, int biomeIndex = -1, BiomeConfigSO biome = null)
     {
+        if (true)
+        {
+            Debug.LogWarning("temporary unavailible du to conflict between objectPlacers_Perlin and ZoneBasedGeneration");
+            return;
+        }
 
         base.Execute(generationData, biomeIndex, biome);
 
         // get potential spawn location
-        List<Vector3> candidateLocations = GetFilteredLocationsForBiome(generationData.globalConfig, generationData.mapResolution, generationData.heightMap,
-                                                                        generationData.heightmapScale, generationData.biomeMap, biomeIndex);
+        List<Vector3> candidateLocations = GetFilteredLocationsForBiome(generationData, biomeIndex);
 
         ExecuteSimpleSpawning(generationData, candidateLocations, generationData.objectRoot);
 
