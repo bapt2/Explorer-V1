@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEditor;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -17,16 +15,16 @@ public class InventoryManager : MonoBehaviour
     public GameObject insectPanel;
     public GameObject fishPanel;
     public GameObject plantPanel;
-    
+
     public GameObject itemContent;
     public GameObject insectContent;
     public GameObject fishContent;
     public GameObject plantContent;
 
-    int itemPlace = 70;
-    int insectPlace = 10;
-    int fishPlace = 10;
-    int plantPlace = 20;
+    public int itemPlace = 20;
+    public int insectPlace = 10;
+    public int fishPlace = 10;
+    public int plantPlace = 20;
 
     public List<BaseItem> itemList = new();
     public List<InsectItem> InsectItemList = new();
@@ -34,6 +32,7 @@ public class InventoryManager : MonoBehaviour
     public List<PlantItem> plantItemList = new();
 
     GameObject _slotPrefab;
+    ItemSlot itemslot;
 
     public static InventoryManager instance;
 
@@ -60,6 +59,7 @@ public class InventoryManager : MonoBehaviour
             PlayerController.instance.rb.velocity = Vector3.zero;
             PlayerController.instance.enabled = false;
             CameraController.instance.enabled = false;
+            DisplayItemPanel();
         }
         else if (Input.GetKeyDown(KeyCode.I) && inventoryIsOpen && SceneManager.GetActiveScene().name != "Main Menu")
         {
@@ -129,28 +129,33 @@ public class InventoryManager : MonoBehaviour
 
             for (int i = 0; i < itemPlace; i++)
             {
+                _slotPrefab = null;
                 if (i <= _itemList.Count - 1)
                 {
-                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-
+                    _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
                     _slotPrefab.transform.SetParent(itemContent.transform);
-                    TextMeshProUGUI itemName = slotPrefab.transform.Find("Name").GetComponent<TextMeshProUGUI>();
-                    Image sprite = slotPrefab.transform.Find("Sprite").GetComponent<Image>();
+                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
-                    _slotPrefab.GetComponent<ItemSlot>().slotIndex = i;
+                    TextMeshProUGUI itemName = itemslot.itemSlotName;
+                    Image sprite = itemslot.itemSlotIcon;
 
+                    itemslot.slotIndex = i;
                     itemName.text = itemList[i].itemName;
                     sprite.sprite = itemList[i].sprite;
+
                 }
                 else if (i > _itemList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
                     _slotPrefab.transform.SetParent(itemContent.transform);
+                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
-                    _slotPrefab.GetComponent<ItemSlot>().slotIndex = i;
-                    TextMeshProUGUI itemName = slotPrefab.transform.Find("Name").GetComponent<TextMeshProUGUI>();
+                    TextMeshProUGUI itemName = itemslot.itemSlotName;
+                    Image sprite = itemslot.itemSlotIcon;
 
-                    itemName.gameObject.SetActive(false);
+                    itemslot.slotIndex = i;
+                    itemName.text = null;
+                    sprite.sprite = null;
                 }
             }
         }
@@ -167,23 +172,36 @@ public class InventoryManager : MonoBehaviour
 
             for (int i = 0; i < insectPlace; i++)
             {
+                _slotPrefab = null;
                 if (i <= _insectItemList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
                     _slotPrefab.transform.SetParent(insectContent.transform);
+                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
-                    _slotPrefab.GetComponent<ItemSlot>().slotIndex = i;
+                    TextMeshProUGUI itemName = itemslot.itemSlotName;
+                    Image sprite = itemslot.itemSlotIcon;
+
+                    itemslot.slotIndex = i;
+                    itemName.text = itemList[i].itemName;
+                    sprite.sprite = itemList[i].sprite;
                 }
                 else if (i > _insectItemList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
                     _slotPrefab.transform.SetParent(insectContent.transform);
+                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
-                    _slotPrefab.GetComponent<ItemSlot>().slotIndex = i;
+                    TextMeshProUGUI itemName = itemslot.itemSlotName;
+                    Image sprite = itemslot.itemSlotIcon;
+
+                    itemslot.slotIndex = i;
+                    itemName.text = null;
+                    sprite.sprite = null;
                 }
             }
         }
-        
+
         else if (_fishItemList != null)
         {
             foreach (Transform child in fishContent.transform)
@@ -196,24 +214,38 @@ public class InventoryManager : MonoBehaviour
 
             for (int i = 0; i < fishPlace; i++)
             {
+                _slotPrefab = null;
+
                 if (i <= _fishItemList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
                     _slotPrefab.transform.SetParent(fishContent.transform);
+                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
-                    _slotPrefab.GetComponent<ItemSlot>().slotIndex = i;
+                    TextMeshProUGUI itemName = itemslot.itemSlotName;
+                    Image sprite = itemslot.itemSlotIcon;
+
+                    itemslot.slotIndex = i;
+                    itemName.text = itemList[i].itemName;
+                    sprite.sprite = itemList[i].sprite;
 
                 }
                 else if (i > _fishItemList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
                     _slotPrefab.transform.SetParent(fishContent.transform);
+                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
-                    _slotPrefab.GetComponent<ItemSlot>().slotIndex = i;
+                    TextMeshProUGUI itemName = itemslot.itemSlotName;
+                    Image sprite = itemslot.itemSlotIcon;
+
+                    itemslot.slotIndex = i;
+                    itemName.text = null;
+                    sprite.sprite = null;
                 }
             }
         }
-        
+
         else if (_plantItemList != null)
         {
             foreach (Transform child in plantContent.transform)
@@ -226,19 +258,33 @@ public class InventoryManager : MonoBehaviour
 
             for (int i = 0; i < plantPlace; i++)
             {
+                _slotPrefab = null;
+
                 if (i <= _plantItemList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
                     _slotPrefab.transform.SetParent(plantContent.transform);
+                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
-                    _slotPrefab.GetComponent<ItemSlot>().slotIndex = i;
+                    TextMeshProUGUI itemName = itemslot.itemSlotName;
+                    Image sprite = itemslot.itemSlotIcon;
+
+                    itemslot.slotIndex = i;
+                    itemName.text = itemList[i].itemName;
+                    sprite.sprite = itemList[i].sprite;
                 }
                 else if (i > _plantItemList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
                     _slotPrefab.transform.SetParent(plantContent.transform);
+                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
-                    _slotPrefab.GetComponent<ItemSlot>().slotIndex = i;
+                    TextMeshProUGUI itemName = itemslot.itemSlotName;
+                    Image sprite = itemslot.itemSlotIcon;
+
+                    itemslot.slotIndex = i;
+                    itemName.text = null;
+                    sprite.sprite = null;
                 }
             }
         }
