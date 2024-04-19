@@ -9,12 +9,12 @@ public class ReadInput : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.input = data.worldName;
+        input = data.worldName;
     }
 
     public void SaveData(GameData data)
     {
-        data.worldName = this.input;
+        data.worldName = input;
     }
 
     public void ReadStringInput(string s)

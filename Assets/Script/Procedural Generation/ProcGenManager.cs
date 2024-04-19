@@ -162,17 +162,6 @@ public class ProcGenManager : MonoBehaviour
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.TerrainPainting, "Painting the terrain");
         yield return new WaitForSeconds(1f);
 
-#if UNITY_EDITOR
-        if (Application.isPlaying)
-        {
-            RegenerateTextures();
-            RegenerateDetailPrototypes();
-        }
-#else
-            RegenerateTextures();
-            RegenerateDetailPrototypes();
-#endif
-
         // paint the terrain
         Perform_TerrainPainting();
 

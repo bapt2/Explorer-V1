@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
         if (instance != null)
         {
             Debug.LogWarning("more than one instance of Camera controller in the scene, destroy the newest one");
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
 

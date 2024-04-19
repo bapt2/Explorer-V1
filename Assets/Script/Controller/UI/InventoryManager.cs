@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, IDataPersistence
 {
     public GameObject inventoryPanel;
     public bool inventoryIsOpen = false;
@@ -27,7 +27,7 @@ public class InventoryManager : MonoBehaviour
     public int plantPlace = 20;
 
     public List<BaseItem> itemList = new();
-    public List<InsectItem> InsectItemList = new();
+    public List<InsectItem> insectItemList = new();
     public List<FishItem> fishItemList = new();
     public List<PlantItem> plantItemList = new();
 
@@ -85,7 +85,7 @@ public class InventoryManager : MonoBehaviour
         insectPanel.SetActive(true);
         fishPanel.SetActive(false);
         plantPanel.SetActive(false);
-        CreateItemSlot(null, InsectItemList);
+        CreateItemSlot(null, insectItemList);
 
     }
 
@@ -183,8 +183,8 @@ public class InventoryManager : MonoBehaviour
                     Image sprite = itemslot.itemSlotIcon;
 
                     itemslot.slotIndex = i;
-                    itemName.text = itemList[i].itemName;
-                    sprite.sprite = itemList[i].sprite;
+                    itemName.text = insectItemList[i].itemName;
+                    sprite.sprite = insectItemList[i].sprite;
                 }
                 else if (i > _insectItemList.Count - 1)
                 {
@@ -226,8 +226,8 @@ public class InventoryManager : MonoBehaviour
                     Image sprite = itemslot.itemSlotIcon;
 
                     itemslot.slotIndex = i;
-                    itemName.text = itemList[i].itemName;
-                    sprite.sprite = itemList[i].sprite;
+                    itemName.text = fishItemList[i].itemName;
+                    sprite.sprite = fishItemList[i].sprite;
 
                 }
                 else if (i > _fishItemList.Count - 1)
@@ -270,8 +270,8 @@ public class InventoryManager : MonoBehaviour
                     Image sprite = itemslot.itemSlotIcon;
 
                     itemslot.slotIndex = i;
-                    itemName.text = itemList[i].itemName;
-                    sprite.sprite = itemList[i].sprite;
+                    itemName.text = plantItemList[i].itemName;
+                    sprite.sprite = plantItemList[i].sprite;
                 }
                 else if (i > _plantItemList.Count - 1)
                 {
@@ -288,5 +288,31 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
+    }
+
+   public void LoadData(GameData data)
+    {
+        itemPlace = data.itemPlace;
+        insectPlace = data.insectPlace;
+        fishPlace = data.fishPlace;
+        plantPlace = data.plantPlace;
+
+        itemList = data.itemList;
+        insectItemList = data.insectItemList;
+        fishItemList = data.fishItemList;
+        plantItemList = data.plantItemList;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.itemPlace = itemPlace;
+        data.insectPlace = insectPlace;
+        data.fishPlace = fishPlace;
+        data.plantPlace = plantPlace;
+
+        data.itemList = itemList;
+        data.insectItemList = insectItemList;
+        data.fishItemList = fishItemList;
+        data.plantItemList = plantItemList;
     }
 }

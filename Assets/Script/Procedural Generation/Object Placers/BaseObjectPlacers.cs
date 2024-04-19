@@ -121,7 +121,7 @@ public class BaseObjectPlacers : MonoBehaviour
 
     protected virtual void SpawnObject(ProcGenManager.GenerationData generationData, GameObject prefab, Vector3 spawnLocation)
     {
-        Quaternion spawnRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0);
+        Quaternion spawnRotation = Quaternion.Euler(-90, Random.Range(0f, 360f), 0);
         Vector3 possitionOffset = new Vector3(generationData.Random(-maxPositionJitter, maxPositionJitter), 0,
                                               generationData.Random(-maxPositionJitter, maxPositionJitter));
 #if UNITY_EDITOR

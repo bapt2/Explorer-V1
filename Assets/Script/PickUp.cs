@@ -5,15 +5,26 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     public BaseItem item;
+    public InsectItem insectItem;
+    public FishItem fishItem;
+    public PlantItem plantItem;
     public bool isInRange = false;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) && isInRange)
         {
-            Debug.Log(PlayerController.instance.gameObject.name);
+            if (insectItem != null)
+                PickupInsect();
 
-            PickupItem();
+            else if (fishItem != null)
+                PickupFish();
+
+            else if (plantItem != null)
+                PickupPlant();
+
+            else if (item != null)
+                PickupItem();
         }
     }
     private void OnTriggerStay(Collider other)
@@ -34,9 +45,22 @@ public class PickUp : MonoBehaviour
 
     void PickupItem()
     {
-        Debug.Log(InventoryManager.instance.gameObject.name);
         InventoryManager.instance.itemList.Add(item);
-        InventoryManager.instance.CreateItemSlot(InventoryManager.instance.itemList);
+        Destroy(gameObject);
+    }
+    void PickupInsect()
+    {
+        InventoryManager.instance.insectItemList.Add(insectItem);
+        Destroy(gameObject);
+    }
+    void PickupFish()
+    {
+        InventoryManager.instance.fishItemList.Add(fishItem);
+        Destroy(gameObject);
+    }
+    void PickupPlant()
+    {
+        InventoryManager.instance.plantItemList.Add(plantItem);
         Destroy(gameObject);
     }
 }

@@ -121,7 +121,7 @@ public class heightMapModifier_Structures : BaseHeightMapModifier
 
     public override void Execute(ProcGenManager.GenerationData generationData, int biomeIndex = -1, BiomeConfigSO biome = null)
     {
-        var buildingRoot = FindObjectOfType<ProcGenManager>().transform;
+        var structuresRoot = FindObjectOfType<ProcGenManager>().transform;
 
         // travers the structures
         foreach (var structure in structures)

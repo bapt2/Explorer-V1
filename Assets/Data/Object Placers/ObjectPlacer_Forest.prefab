@@ -52,7 +52,7 @@ MonoBehaviour:
     canGoAboveWater: 1
     Wheighting: 1
     prefabs:
-    - {fileID: 2081764213509264228, guid: ab36840ea7b96a8489df0ab41d563599, type: 3}
+    - {fileID: 8704074419599968910, guid: 388467c792138504eb609db81918e3d8, type: 3}
   targetDensity: 0.1
   maxSpawnCount: 2000
   maxInvalidLocationSkips: 10
