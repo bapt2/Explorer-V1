@@ -10,6 +10,12 @@ public class ProcGenManagerEditor : Editor
     {
         DrawDefaultInspector();
 
+        if (GUILayout.Button("Regenerate World"))
+        {
+            ProcGenManager targetManager = serializedObject.targetObject as ProcGenManager;
+            EditorCoroutineUtility.StartCoroutine(PerformRegeneration(targetManager), this);
+        }
+
         if (GUILayout.Button("Regenerate Texture"))
         {
             ProcGenManager targetManager = serializedObject.targetObject as ProcGenManager;
@@ -20,12 +26,6 @@ public class ProcGenManagerEditor : Editor
         {
             ProcGenManager targetManager = serializedObject.targetObject as ProcGenManager;
             targetManager.RegenerateDetailPrototypes();
-        }
-
-        if (GUILayout.Button("Regenerate World"))
-        {
-            ProcGenManager targetManager = serializedObject.targetObject as ProcGenManager;
-            EditorCoroutineUtility.StartCoroutine(PerformRegeneration(targetManager), this);
         }
     }
 

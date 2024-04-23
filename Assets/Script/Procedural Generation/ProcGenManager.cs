@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
-using UnityEditor;
-using UnityEngine.SceneManagement;
 #endif //UNITY_EDITOR
 
 public enum EGenerationStage
@@ -71,7 +71,7 @@ public class ProcGenManager : MonoBehaviour
     }
 
     [SerializeField] protected int maxInvalidLocationSkips = 10;
-    
+
     [SerializeField] ProcGenConfigSO config;
     [SerializeField] Terrain targetTerrain;
     [SerializeField] int seed;
@@ -180,13 +180,12 @@ public class ProcGenManager : MonoBehaviour
         Perform_DetailPainting();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.Complete, "Generation Complete");
-
+        Debug.Log("Generation completed, you can be happy or not if you have an issue");
     }
 
 
     public void Perform_GenerateTextureMapping()
     {
-        Debug.Log(data.biomeTextureToTerrainLayerIndex);
         data.biomeTextureToTerrainLayerIndex.Clear();
 
         //build up a list of all textures 
@@ -491,15 +490,17 @@ public class ProcGenManager : MonoBehaviour
     {
         data.alphaMap = targetTerrain.terrainData.GetAlphamaps(0, 0, data.alphaMapResolution, data.alphaMapResolution);
 
-        // zero out all layers
-        for (int y = 0; y < data.alphaMapResolution; y++)
+        // zero out all layers if existe
+        if (targetTerrain.terrainData.alphamapLayers > 0)
         {
-            for (int x = 0; x < data.alphaMapResolution; x++)
+            for (int y = 0; y < data.alphaMapResolution; y++)
             {
-                for (int layerIndex = 0; layerIndex < targetTerrain.terrainData.alphamapLayers; layerIndex++)
+                for (int x = 0; x < data.alphaMapResolution; x++)
                 {
-                    data.alphaMap[x, y, layerIndex] = 0;
-
+                    for (int layerIndex = 0; layerIndex < targetTerrain.terrainData.alphamapLayers; layerIndex++)
+                    {
+                        data.alphaMap[x, y, layerIndex] = 0;
+                    }
                 }
             }
         }
@@ -654,6 +655,10 @@ public class ProcGenManager : MonoBehaviour
             numPlaced++;
 
             randomLocation.RemoveAt(randomLocationIndex);
+            if (!PlayerController.instance)
+            {
+                return;
+            }
             PlayerController.instance.transform.position = spawnLocation;
         }
     }

@@ -19,10 +19,10 @@ public class TexturePainter_Random : BaseTexturePainter
     public override void Execute(ProcGenManager.GenerationData generationData, int biomeIndex = -1, BiomeConfigSO biome = null)
     {
         int baseTextureLayer = generationData.manager.GetLayerForTexture(baseTexture);
-        for (int y = 0; y < generationData.alphaMapResolution; y++)
+        for (int y = 0; y < generationData.alphaMapResolution; ++y)
         {
             int heightMapY = Mathf.FloorToInt((float)y * (float)generationData.mapResolution / (float)generationData.alphaMapResolution);
-            for (int x = 0; x < generationData.alphaMapResolution; x++)
+            for (int x = 0; x < generationData.alphaMapResolution; ++x)
             {
                 int heightMapX = Mathf.FloorToInt((float)x * (float)generationData.mapResolution / (float)generationData.alphaMapResolution);
 
