@@ -6,6 +6,10 @@ public class ReadInput : MonoBehaviour, IDataPersistence
 {
     string input;
     
+    public void ReadStringInput(string s)
+    {
+        input = s;
+    }
 
     public void LoadData(GameData data)
     {
@@ -17,9 +21,4 @@ public class ReadInput : MonoBehaviour, IDataPersistence
         data.worldName = input;
     }
 
-    public void ReadStringInput(string s)
-    {
-        input = s;
-        Debug.Log(input);
-    }
 }

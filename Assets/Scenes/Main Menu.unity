@@ -5276,9 +5276,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1913887297}
-        m_TargetAssemblyTypeName: DataPersistanceManager, Assembly-CSharp
-        m_MethodName: StartGameButton
+      - m_Target: {fileID: 730230201}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: WorldCreationButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5933,17 +5933,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5513887759391213844, guid: 3a96f9e074f517241b9e481ffcdaa7a3, type: 3}
   m_PrefabInstance: {fileID: 1256692137}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1693572528 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 309789641046233042, guid: 3a96f9e074f517241b9e481ffcdaa7a3, type: 3}
-  m_PrefabInstance: {fileID: 1256692137}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2814d9432433d3747a672ca42c9599f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1703702900
 GameObject:
   m_ObjectHideFlags: 0
@@ -6639,13 +6628,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1913887296}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 2
+      - m_Target: {fileID: 1913887297}
+        m_TargetAssemblyTypeName: DataPersistanceManager, Assembly-CSharp
+        m_MethodName: StartGameButton
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1693572528}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7005,17 +6994,12 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1913887296 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7341762849122903022, guid: 26f7992e00f54c0438bba48676e3b923, type: 3}
-  m_PrefabInstance: {fileID: 7341762849519769187}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1913887297 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7341762849122903020, guid: 26f7992e00f54c0438bba48676e3b923, type: 3}
   m_PrefabInstance: {fileID: 7341762849519769187}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1913887296}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9896bd5b675b0be4cb2f697f57012fa5, type: 3}

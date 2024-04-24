@@ -16,6 +16,8 @@ public class GameData
     public int maxStamina;
     public int currentStamina;
 
+    public Vector3 playerPosition;
+
     public int itemPlace;
     public int insectPlace;
     public int fishPlace;
@@ -28,7 +30,7 @@ public class GameData
 
     public GameData()
     {
-        this.worldName = "New World";
+        worldName = "New World";
         enciclopedie = new SerializableDictionary<string, bool>();
 
         maxHealth = 100;
@@ -36,6 +38,8 @@ public class GameData
 
         maxStamina = 150;
         currentStamina = maxStamina;
+
+        playerPosition = new Vector3(0, 1, 0);
 
         itemPlace = 20;
         insectPlace = 10;

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistence
 {
     public GameObject inventoryPanel;
-    public int amount;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !InventoryManager.instance.inventoryIsOpen)
+        if (Input.GetKeyDown(KeyCode.Escape) && !InventoryManager.instance.inventoryIsOpen && !DataPersistanceManager.instance.isProcGenScene)
         {
             DataPersistanceManager.instance.SaveGame();
             SceneManager.LoadScene("Main Menu");
@@ -22,5 +21,15 @@ public class GameManager : MonoBehaviour
             PlayerController.instance.enabled = true;
             CameraController.instance.enabled = true;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        PlayerController.instance.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.playerPosition = PlayerController.instance.transform.position;
     }
 }

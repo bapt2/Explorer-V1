@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 public class DataPersistanceManager : MonoBehaviour
 {
@@ -12,13 +11,17 @@ public class DataPersistanceManager : MonoBehaviour
     [SerializeField] private string fileName;
     [SerializeField] private bool useEncryption;
 
-    private GameData gameData;
+    public string currentScene;
+    public bool isProcGenScene = false;
+    public bool dataExist = false;
 
-    private List<IDataPersistence> dataPersistencesObject;
+    GameData gameData;
 
-    private FileDataHandler dataHandler;
+    List<IDataPersistence> dataPersistencesObject;
 
-    private string selectedProfileId = "test2";
+    FileDataHandler dataHandler;
+
+    string selectedProfileId = "test2";
 
     public static DataPersistanceManager instance { get; private set; }
 
@@ -38,52 +41,63 @@ public class DataPersistanceManager : MonoBehaviour
             Debug.LogWarning("Data Persistence is currently disable");
         }
 
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        if (dataHandler.Load(selectedProfileId) != null)
+            dataExist = true;
+        else
+            dataExist = false;
     }
 
     private void OnEnable()
     {
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-            Debug.Log("OnSceneloaded called");
-            this.dataPersistencesObject = FindAllDataPersistanteObject();
-            LoadGame();
-    }
+        currentScene = scene.name;
+        if (scene.name != "Main Menu")
+        {
+            PlayerController.instance.gameObject.SetActive(true);
+            SaveGame();
+        }
+        else if (scene.name == "Main Menu" && PlayerController.instance != null)
+            PlayerController.instance.gameObject.SetActive(false);
 
-    public void ChangeSelectedProfileId(string newProfileId)
-    {
-        // update the profile to use for saving and loading
-        
-        this.selectedProfileId = newProfileId;
-        //load the game, which will use that profile, updating our game data accordingly
+        if (scene.name == ("Procedural Generation_Forest") || scene.name == ("Procedural Generation_Desert") || scene.name == ("Procedural Generation_Island"))
+            isProcGenScene = true;
+        else if (scene.name != ("Procedural Generation_Forest") && scene.name != ("Procedural Generation_Desert") && scene.name != ("Procedural Generation_Island"))
+            isProcGenScene = false;
+
+        dataPersistencesObject = FindAllDataPersistanteObject();
         LoadGame();
     }
+
+ /*   public void ChangeSelectedProfileId(string newProfileId)
+    {
+        // update the profile to use for saving and loading
+
+        selectedProfileId = newProfileId;
+        //load the game, which will use that profile, updating our game data accordingly
+        LoadGame();
+    }*/
 
     //temporally function
     public void StartGameButton()
     {
         // create a new game which will initialize our data to a clean slate
 
-        LoadGame();
-
         SaveGame();
 
-        //load the scene which will in turn save the game because of OnSceneUnloaded() in the DataPersistenceManeger
+        LoadGame();
+
         SceneManager.LoadSceneAsync("Hub");
     }
 
     public void NewGame()
     {
-        this.gameData = new GameData();
+        gameData = new GameData();
     }
 
     public void DeleteProfileData(string profileId)
@@ -102,9 +116,9 @@ public class DataPersistanceManager : MonoBehaviour
 
 
         // load any save data from a file using the data handler
-        this.gameData = dataHandler.Load(selectedProfileId);
+        gameData = dataHandler.Load(selectedProfileId);
 
-        if (this.gameData == null)
+        if (gameData == null)
         {
             Debug.Log("No data whas found, initialise data to default");
             NewGame();
@@ -131,7 +145,7 @@ public class DataPersistanceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(gameData);
         }
-        
+
         // save that data to a file using the data handler
         dataHandler.Save(gameData, selectedProfileId);
     }

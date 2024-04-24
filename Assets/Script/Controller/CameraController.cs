@@ -17,26 +17,27 @@ public class CameraController : MonoBehaviour
         }
 
         instance = this;
-
     }
 
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-
     }
 
     void Update()
     {
-        transform.position = PlayerController.instance.transform.position;
-        localRot.x += Input.GetAxis("Mouse X") * sensitivity;
+        if (DataPersistanceManager.instance.currentScene != "Main Menu")
+        {
+            transform.position = PlayerController.instance.transform.position;
+            localRot.x += Input.GetAxis("Mouse X") * sensitivity;
 
-        // inverse this if you want to inverse the camera control
-        localRot.y -= Input.GetAxis("Mouse Y") * sensitivity;
+            // inverse this if you want to inverse the camera control
+            localRot.y -= Input.GetAxis("Mouse Y") * sensitivity;
 
-        localRot.y = Mathf.Clamp(localRot.y, -30f, 80f);
+            localRot.y = Mathf.Clamp(localRot.y, -30f, 80f);
 
-        Quaternion qt = Quaternion.Euler(localRot.y, localRot.x, 0f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, qt, Time.deltaTime * orbitDamping);
+            Quaternion qt = Quaternion.Euler(localRot.y, localRot.x, 0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, qt, Time.deltaTime * orbitDamping);
+        }
     }
 }

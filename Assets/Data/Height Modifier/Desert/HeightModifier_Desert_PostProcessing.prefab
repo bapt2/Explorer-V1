@@ -112,10 +112,10 @@ MonoBehaviour:
   - heightMap: {fileID: 2800000, guid: c72ef1467b80c874aa12844181b850db, type: 3}
     prefab: {fileID: 147752070363490410, guid: 5ffe23fe58df5984b8f664db9ab580c8, type: 3}
     radius: 10
-    numToSpawn: 20
+    numToSpawn: 2
     quaternion: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
     hasHeightLimite: 1
     minHeightToSpawn: 10
-    MaxHeightToSpawn: 30
+    MaxHeightToSpawn: 25
     canGoInWater: 0
     canGoAboveWater: 1

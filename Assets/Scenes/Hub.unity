@@ -4754,7 +4754,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 179388522}
-  amount: 10
 --- !u!114 &1182024871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5350,8 +5349,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -180, y: 0}
-  m_SizeDelta: {x: 268, y: -55}
+  m_AnchoredPosition: {x: -180, y: -0.005001068}
+  m_SizeDelta: {x: 268, y: -54.989998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1255895515
 MonoBehaviour:
@@ -6101,6 +6100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1491683647}
   - component: {fileID: 1491683648}
+  - component: {fileID: 1491683649}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6145,6 +6145,19 @@ MonoBehaviour:
   newGamePanel: {fileID: 0}
   deleteWarningPanel: {fileID: 0}
   startButton: {fileID: 0}
+  createButton: {fileID: 0}
+--- !u!114 &1491683649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491683645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e82dc7adb5ff940b7af7ade3630ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1529317406
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class SaveSlotsMenu : MonoBehaviour
         saveSlots = this.GetComponentsInChildren<SaveSlot>();
     }
 
-    public void OnSaveSlotClicked(SaveSlot saveSlot)
+/*    public void OnSaveSlotClicked(SaveSlot saveSlot)
     {
         //disable all button
         DisableButtons();
@@ -36,7 +36,7 @@ public class SaveSlotsMenu : MonoBehaviour
 
         //load the scene which will in turn save the game because of OnSceneUnloaded() in the DataPersistenceManeger
         SceneManager.LoadSceneAsync("Hub");
-    }
+    }/
 
     /*private void Start()
     {

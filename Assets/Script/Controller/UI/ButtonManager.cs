@@ -17,6 +17,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] GameObject newGamePanel;
     [SerializeField] GameObject deleteWarningPanel;
     [SerializeField] Button startButton;
+    [SerializeField] Button createButton;
     #endregion
 
 
@@ -32,18 +33,22 @@ public class ButtonManager : MonoBehaviour
         }
 
         instance = this;
+    }
 
-        if (SceneManager.GetActiveScene().name == "Main Menu")
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Main Menu" && DataPersistanceManager.instance.dataExist)
             startButton.onClick.AddListener(FindObjectOfType<DataPersistanceManager>().StartGameButton);
-
-       
+        else if (SceneManager.GetActiveScene().name == "Main Menu" && !DataPersistanceManager.instance.dataExist)
+        {
+            startButton.onClick.AddListener(WorldCreationButton);
+            createButton.onClick.AddListener(DataPersistanceManager.instance.StartGameButton);
+        }
     }
 
     #region MainMenu
     public void StartButton()
     {
-
-
        /* mainMenuPanel.SetActive(false);
         saveMenuPanel.SetActive(true);*/
     }
