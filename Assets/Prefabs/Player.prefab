@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 5590498575998478130}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2999302110749469300}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -155,10 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77000647380dbd499897fc0b9e3a336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   speed: 20
   jumpForce: 7
   isGrounded: 1
-  cam: {fileID: 0}
 --- !u!54 &2930308779509751550
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalPanel: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 2999302110749469300}
 --- !u!1 &6066812985031872158
 GameObject:
   m_ObjectHideFlags: 0

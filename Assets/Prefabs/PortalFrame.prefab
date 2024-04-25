@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4892988791211005967}
   - component: {fileID: 8592051494574485636}
   - component: {fileID: 3602174577172431201}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PortalFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147752070363490410}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -93,7 +93,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147752070363490410}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ddfb2f621b06b2f4e94e93282d1966e7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 801306449389356744}
   - component: {fileID: 2816922806636586184}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PortalRange
   m_TagString: PortalRangeReturn
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4852115355988750064}
   - component: {fileID: 1042948386546888732}
   - component: {fileID: 5871584276287811835}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

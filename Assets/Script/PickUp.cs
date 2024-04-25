@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
@@ -12,6 +10,8 @@ public class PickUp : MonoBehaviour
 
     private void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.P) && isInRange)
         {
             if (insectItem != null)
@@ -32,6 +32,8 @@ public class PickUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInRange = true;
+            InventoryManager.instance.DisplayPickUpMessage();
+
         }
     }
 
@@ -40,27 +42,63 @@ public class PickUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInRange = false;
+            InventoryManager.instance.ClosePickUpMessage();
         }
     }
 
     void PickupItem()
     {
-        InventoryManager.instance.itemList.Add(item);
-        Destroy(gameObject);
+        if (InventoryManager.instance.itemList.Count >= InventoryManager.instance.itemPlace)
+        {
+            StartCoroutine(InventoryManager.instance.ItemInventoryFull());
+        }
+        else
+        {
+            InventoryManager.instance.itemList.Add(item);
+            InventoryManager.instance.ClosePickUpMessage();
+            Destroy(gameObject);
+
+        }
     }
     void PickupInsect()
     {
-        InventoryManager.instance.insectItemList.Add(insectItem);
-        Destroy(gameObject);
+        if (InventoryManager.instance.insectItemList.Count >= InventoryManager.instance.insectPlace)
+        {
+            StartCoroutine(InventoryManager.instance.InsectInventoryFull());
+        }
+        else
+        {
+            InventoryManager.instance.insectItemList.Add(insectItem);
+            InventoryManager.instance.ClosePickUpMessage();
+            Destroy(gameObject);
+
+        }
     }
     void PickupFish()
     {
-        InventoryManager.instance.fishItemList.Add(fishItem);
-        Destroy(gameObject);
+        if (InventoryManager.instance.fishItemList.Count >= InventoryManager.instance.fishPlace)
+        {
+            StartCoroutine(InventoryManager.instance.FishInventoryFull());
+        }
+        else
+        {
+            InventoryManager.instance.fishItemList.Add(fishItem);
+            InventoryManager.instance.ClosePickUpMessage();
+
+            Destroy(gameObject);
+        }
     }
     void PickupPlant()
     {
-        InventoryManager.instance.plantItemList.Add(plantItem);
-        Destroy(gameObject);
+        if (InventoryManager.instance.plantItemList.Count >= InventoryManager.instance.plantPlace)
+        {
+            StartCoroutine(InventoryManager.instance.PlantInventoryFull());
+        }
+        else
+        {
+            InventoryManager.instance.plantItemList.Add(plantItem);
+            InventoryManager.instance.ClosePickUpMessage();
+            Destroy(gameObject);
+        }
     }
 }

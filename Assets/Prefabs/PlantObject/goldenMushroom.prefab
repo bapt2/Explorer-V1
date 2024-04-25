@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3190604824956581868}
   - component: {fileID: -1651969037256682101}
   - component: {fileID: -7622480610775004613}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: goldenMushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6719313399255395516}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

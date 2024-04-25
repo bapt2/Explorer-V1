@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8352461451712595430}
   - component: {fileID: 392242433024636773}
   - component: {fileID: 1885599072468963019}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704074419599968910}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

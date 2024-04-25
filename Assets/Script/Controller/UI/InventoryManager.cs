@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +21,12 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     public GameObject insectContent;
     public GameObject fishContent;
     public GameObject plantContent;
+
+    public GameObject itemFull;
+    public GameObject insectFull;
+    public GameObject fishFull;
+    public GameObject plantFull;
+    public GameObject pickUpMessage;
 
     public int itemPlace = 20;
     public int insectPlace = 10;
@@ -290,7 +297,48 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         }
     }
 
-   public void LoadData(GameData data)
+    #region full inventory
+
+
+    public IEnumerator ItemInventoryFull()
+    {
+        itemFull.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        itemFull.SetActive(false);
+    }
+    public IEnumerator InsectInventoryFull()
+    {
+        insectFull.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        insectFull.SetActive(false);
+    }
+    public IEnumerator FishInventoryFull()
+    {
+        fishFull.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        fishFull.SetActive(false);
+    }
+    public IEnumerator PlantInventoryFull()
+    {
+        plantFull.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        plantFull.SetActive(false);
+    }
+    #endregion
+
+    #region pick up message
+    public void DisplayPickUpMessage()
+    {
+        pickUpMessage.SetActive(true);
+    }
+    
+    public void ClosePickUpMessage()
+    {
+        pickUpMessage.SetActive(false);
+    }
+    #endregion
+
+    public void LoadData(GameData data)
     {
         itemPlace = data.itemPlace;
         insectPlace = data.insectPlace;
