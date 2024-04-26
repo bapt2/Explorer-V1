@@ -10,11 +10,14 @@ public class GameData
 
     public SerializableDictionary<string, bool> enciclopedie;
 
-    public int maxHealth;
-    public int currentHealth;
+    public float maxHealth;
+    public float currentHealth;
 
-    public int maxStamina;
-    public int currentStamina;
+    public float maxBreath;
+    public float currentBreath;
+
+    public float maxStamina;
+    public float currentStamina;
 
     public Vector3 playerPosition;
 
@@ -35,6 +38,9 @@ public class GameData
 
         maxHealth = 100;
         currentHealth = maxHealth;
+
+        maxBreath = 100;
+        currentBreath = maxBreath;
 
         maxStamina = 150;
         currentStamina = maxStamina;

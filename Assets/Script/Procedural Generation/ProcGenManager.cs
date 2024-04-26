@@ -89,6 +89,14 @@ public class ProcGenManager : MonoBehaviour
         StartCoroutine(AsyncRegenerateWorld());
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Perform_SpecifiqueSpawn();
+        }
+    }
+
     public IEnumerator AsyncRegenerateWorld(System.Action<EGenerationStage, string> reportStatus = null)
     {
         int workingSeed = seed;
@@ -118,9 +126,7 @@ public class ProcGenManager : MonoBehaviour
         data.detailMapResolution = targetTerrain.terrainData.detailResolution;
         data.maxDetailPerPatch = targetTerrain.terrainData.detailResolutionPerPatch;
         data.heightmapScale = targetTerrain.terrainData.heightmapScale;
-
-        if (reportStatus != null) reportStatus.Invoke(EGenerationStage.BuildTextureMap, "Beginning generation");
-        yield return new WaitForSeconds(1f);
+       
         //clear out any previously spawned objects
         for (int childIndex = data.objectRoot.childCount - 1; childIndex >= 0; childIndex--)
         {
@@ -134,9 +140,11 @@ public class ProcGenManager : MonoBehaviour
             Destroy(data.objectRoot.GetChild(childIndex).gameObject);
 #endif
         }
+        DisablePlayerOnGeneration();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.BuildTextureMap, "Building texture map");
         yield return new WaitForSeconds(1f);
+
 
         // Generate the texture mapping
         Perform_GenerateTextureMapping();
@@ -171,8 +179,6 @@ public class ProcGenManager : MonoBehaviour
         // place the object
         Perform_ObjectPlacement();
 
-        Perform_SpecifiqueSpawn();
-
         // paint the details
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.DetailPainting, "Painting details");
         yield return new WaitForSeconds(1f);
@@ -181,6 +187,10 @@ public class ProcGenManager : MonoBehaviour
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.Complete, "Generation Complete");
         Debug.Log("Generation completed, you can be happy or not if you have an issue");
+
+        EnablePlayerAfterGeneration();
+
+        Perform_SpecifiqueSpawn();
     }
 
 
@@ -661,5 +671,18 @@ public class ProcGenManager : MonoBehaviour
             }
             PlayerController.instance.transform.position = spawnLocation;
         }
+    }
+
+    public void DisablePlayerOnGeneration()
+    {
+        PlayerController.instance.gameObject.SetActive(false);
+        InventoryManager.instance.gameObject.SetActive(false);
+        CameraController.instance.gameObject.SetActive(false);
+    }
+    public void EnablePlayerAfterGeneration()
+    {
+        PlayerController.instance.gameObject.SetActive(true);
+        InventoryManager.instance.gameObject.SetActive(true);
+        CameraController.instance.gameObject.SetActive(true);
     }
 }

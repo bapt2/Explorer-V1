@@ -24,23 +24,22 @@ public class PortalPanel : MonoBehaviour
 
     void Forest_Generation()
     {
-
-        gameObject.SetActive(false);
         CameraController.instance.enabled = true;
+        gameObject.SetActive(false);
         SceneManager.LoadScene("Procedural Generation_Forest");
     }
 
     void Desert_Generation()
     {
-        gameObject.SetActive(false);
         CameraController.instance.enabled = true;
+        gameObject.SetActive(false);
         SceneManager.LoadScene("Procedural Generation_Desert");
     }
 
     void Island_Generation()
     {
-        gameObject.SetActive(false);
         CameraController.instance.enabled = true;
+        gameObject.SetActive(false);
         SceneManager.LoadScene("Procedural Generation_Island");
     }
 }

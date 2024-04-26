@@ -8,15 +8,11 @@ public class InteractManager : MonoBehaviour
 {
     public GameObject portalPanel;
 
-    public GameObject player;
-    
-
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("PortalRange") && Input.GetKeyDown(KeyCode.E))
         {
             OpenPortalPanel();
-            CameraController.instance.enabled = false;
         }
         else if (other.CompareTag("PortalRangeReturn") && Input.GetKeyDown(KeyCode.E))
         {
@@ -29,6 +25,7 @@ public class InteractManager : MonoBehaviour
     void OpenPortalPanel()
     {
         portalPanel.SetActive(true);
-        player.SetActive(true);
+
+        CameraController.instance.enabled = false;
     }
 }

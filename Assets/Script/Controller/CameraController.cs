@@ -26,8 +26,8 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        //if (DataPersistanceManager.instance.currentScene != "Main Menu")
-        //{
+        if (DataPersistanceManager.instance.currentScene != "Main Menu")
+        {
             transform.position = PlayerController.instance.transform.position;
             localRot.x += Input.GetAxis("Mouse X") * sensitivity;
 
@@ -38,6 +38,6 @@ public class CameraController : MonoBehaviour
 
             Quaternion qt = Quaternion.Euler(localRot.y, localRot.x, 0f);
             transform.rotation = Quaternion.Lerp(transform.rotation, qt, Time.deltaTime * orbitDamping);
-        //}
+        }
     }
 }

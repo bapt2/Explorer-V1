@@ -22,11 +22,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: WaterShader_ForestURP
   m_Shader: {fileID: -6465566751694194690, guid: 9ccb3a83e66924e4abb3933eb09a1d22, type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 2100000, guid: 9abc784784423b4449ff9fa55948aad1, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -35,42 +35,11 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _RefractionNormalTexture:
-        m_Texture: {fileID: 2800000, guid: c94cd78f6c7ae61448d6a06073e3adbf, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Distance: 0.68
     - _FoamAmount: 20.55
-    - _FoamCutOff: 18.22
-    - _FoamScale: 46.01
-    - _FoamSpeed: 0.64
-    - _HightFrequency: 0.07
-    - _NormalStrength: 0.21
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _RefractionSpeed: 0.05
-    - _RefractionStrength: 0.03
-    - _Smoothness: 1
-    - _WaveAmplitude: 0.1
-    - _WaveSpeed: 2.3
-    m_Colors:
-    - _DeepColor: {r: 0, g: 0.2641509, b: 0.2351461, a: 0.6039216}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RefractionScale: {r: 10, g: 10, b: 0, a: 0}
-    - _SurfaceColor: {r: 0, g: 1, b: 0.8876231, a: 0.68235296}
+    - _WaveAmplitude: 0.02
+    - _WaveSpeed: 1.13
+    m_Colors: []
   m_BuildTextureStacks: []

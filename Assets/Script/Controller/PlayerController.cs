@@ -26,10 +26,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Main Menu")
-            gameObject.SetActive(false);
-        else
+        if (SceneManager.GetActiveScene().name == "Hub")
             gameObject.SetActive(true);
+        else
+            gameObject.SetActive(false);
 
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody>();

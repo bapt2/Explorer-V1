@@ -57,18 +57,19 @@ public class DataPersistanceManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentScene = scene.name;
-        if (scene.name != "Main Menu")
-        {
-            PlayerController.instance.gameObject.SetActive(true);
-            SaveGame();
-        }
-        else if (scene.name == "Main Menu" && PlayerController.instance != null)
-            PlayerController.instance.gameObject.SetActive(false);
 
         if (scene.name == ("Procedural Generation_Forest") || scene.name == ("Procedural Generation_Desert") || scene.name == ("Procedural Generation_Island"))
             isProcGenScene = true;
         else if (scene.name != ("Procedural Generation_Forest") && scene.name != ("Procedural Generation_Desert") && scene.name != ("Procedural Generation_Island"))
             isProcGenScene = false;
+
+        if (scene.name == "Hub")
+        {
+            PlayerController.instance.gameObject.SetActive(true);
+            SaveGame();
+        }
+        else if ((scene.name == "Main Menu" || isProcGenScene) && PlayerController.instance != null)
+            PlayerController.instance.gameObject.SetActive(false);
 
         dataPersistencesObject = FindAllDataPersistanteObject();
         LoadGame();

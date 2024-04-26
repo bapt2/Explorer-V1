@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        data.playerPosition = PlayerController.instance.transform.position;
+        if (!DataPersistanceManager.instance.isProcGenScene)
+            data.playerPosition = PlayerController.instance.transform.position;
     }
 }
