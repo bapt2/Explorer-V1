@@ -17,7 +17,6 @@ public class WaterScript : MonoBehaviour
 
         else if (PlayerStatsManager.instance.currentBreath == PlayerStatsManager.instance.maxBreath && !isUnderWater)
             PlayerStatsManager.instance.breathBar.gameObject.SetActive(false);
-
     }
 
     private void OnTriggerStay(Collider other)
@@ -28,12 +27,10 @@ public class WaterScript : MonoBehaviour
         }
     }
 
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Head"))
         {
-            Debug.Log($"{other.tag}");
             isUnderWater = false;
         }
     }
@@ -55,12 +52,13 @@ public class WaterScript : MonoBehaviour
     public IEnumerator WaterBreathingDecreaseCoroutine()
     {
         if (PlayerStatsManager.instance.currentBreath > 0)
-        {
             PlayerStatsManager.instance.currentBreath -= 0.1f;
-            PlayerStatsManager.instance.breathBar.SetValue(PlayerStatsManager.instance.currentBreath);
-            yield return new WaitForSeconds(2);
 
-        }
+        else if (PlayerStatsManager.instance.currentBreath < 0)
+            PlayerStatsManager.instance.currentBreath = 0;
+
+        PlayerStatsManager.instance.breathBar.SetValue(PlayerStatsManager.instance.currentBreath);
+        yield return new WaitForSeconds(2);
 
     }
 
@@ -68,6 +66,10 @@ public class WaterScript : MonoBehaviour
     {
         if (PlayerStatsManager.instance.currentHealth > 0)
             PlayerStatsManager.instance.currentHealth -= 0.5f;
+
+        else if (PlayerStatsManager.instance.currentHealth < 0)
+            PlayerStatsManager.instance.currentHealth = 0;
+
         PlayerStatsManager.instance.healthBar.SetValue(PlayerStatsManager.instance.currentHealth);
         yield return new WaitForSeconds(2);
     }
@@ -82,7 +84,6 @@ public class WaterScript : MonoBehaviour
 
     public IEnumerator WaterBreathingRegenCoroutine()
     {
-
         yield return new WaitForSeconds(2);
         if (PlayerStatsManager.instance.currentBreath < PlayerStatsManager.instance.maxBreath)
             PlayerStatsManager.instance.currentBreath += 1;
