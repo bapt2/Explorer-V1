@@ -5840,6 +5840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverMenu: {fileID: 1980103102}
+  hasRespawn: 0
 --- !u!1 &1185794101
 GameObject:
   m_ObjectHideFlags: 0
@@ -10820,6 +10821,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088345810}
   m_CullTransparentMesh: 1
+--- !u!1 &2090774282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2999302110749469300, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
+  m_PrefabInstance: {fileID: 7101436874555933796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2090774283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090774282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532c7a30f790d9f4baeadbaea3474d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedAdd: 4
+  speedSub: 4
+  reachedZero: 0
+  speedModifierAplied: 0
 --- !u!1 &2099080899
 GameObject:
   m_ObjectHideFlags: 0
@@ -11440,6 +11462,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2930308779509751550, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2999302110749469300, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
       propertyPath: m_Name
       value: Player
@@ -11451,6 +11477,14 @@ PrefabInstance:
     - target: {fileID: 6066812985031872158, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
       propertyPath: m_TagString
       value: Head
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113528342803925501, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
+      propertyPath: speed
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113528342803925501, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
+      propertyPath: jumpForce
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 7974018167218289262, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
       propertyPath: m_Material
@@ -11500,7 +11534,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2037996647321966568, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2999302110749469300, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2090774283}
   m_SourcePrefab: {fileID: 100100000, guid: 7d730ea455c00184c9f1b4741bb85110, type: 3}
 --- !u!65 &7679541919858308267
 BoxCollider:
