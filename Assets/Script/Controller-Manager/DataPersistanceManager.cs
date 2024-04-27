@@ -105,7 +105,7 @@ public class DataPersistanceManager : MonoBehaviour
 
         LoadGame();
 
-        SceneManager.LoadSceneAsync("Hub");
+        LevelLoader.instance.LoadLevel(1);
     }
 
     public void NewGame()

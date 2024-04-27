@@ -188,10 +188,8 @@ public class ButtonManager : MonoBehaviour
     public void CheckSave()
     {
         if (SceneManager.GetActiveScene().name == "Main Menu" && DataPersistanceManager.instance.dataExist)
-        {
             startButton.onClick.AddListener(FindObjectOfType<DataPersistanceManager>().StartGameButton);
-            Debug.Log(startButton.onClick);
-        }
+
         else if (SceneManager.GetActiveScene().name == "Main Menu" && !DataPersistanceManager.instance.dataExist)
         {
             startButton.onClick.AddListener(WorldCreationButton);

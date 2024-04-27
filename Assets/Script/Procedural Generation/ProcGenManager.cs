@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 #if UNITY_EDITOR
 #endif //UNITY_EDITOR
@@ -19,6 +20,7 @@ public enum EGenerationStage
     TerrainPainting,
     ObjectPlacement,
     DetailPainting,
+    PlacingPlayer,
 
     Complete,
     NumStage = Complete
@@ -82,6 +84,10 @@ public class ProcGenManager : MonoBehaviour
     [Header("Debuging")]
     [SerializeField] bool Debug_EnableObjectPlacers = false;
 
+    [Header("UI")]
+    [SerializeField] GameObject GenerationCanvas;
+    [SerializeField] TextMeshProUGUI stageText;
+
     GenerationData data;
 
     private void Awake()
@@ -143,37 +149,48 @@ public class ProcGenManager : MonoBehaviour
         DisablePlayerOnGeneration();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.BuildTextureMap, "Building texture map");
+        stageText.text = $"{((int)EGenerationStage.BuildTextureMap)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.BuildTextureMap}";
         yield return new WaitForSeconds(1f);
-
+        // step 1 - 9 
 
         // Generate the texture mapping
         Perform_GenerateTextureMapping();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.BuildDetailMap, "Building Detail map");
+        stageText.text = $"{((int)EGenerationStage.BuildDetailMap)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.BuildDetailMap}";
+
         yield return new WaitForSeconds(1f);
 
         // Generate the detail mapping
         Perform_GenerateDetailMapping();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.BuildBiomeMap, "Generate Low res biome map");
+        stageText.text = $"{((int)EGenerationStage.BuildBiomeMap)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.BuildBiomeMap}";
+
         yield return new WaitForSeconds(1f);
 
         //generate the biome map
         Perform_BiomeGeneration();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.HeightMapGeneration, "Modifiying height");
+        stageText.text = $"{((int)EGenerationStage.HeightMapGeneration)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.HeightMapGeneration}";
+
         yield return new WaitForSeconds(1f);
 
         //update the terrain height
         Perform_HeightMapModification();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.TerrainPainting, "Painting the terrain");
+        stageText.text = $"{((int)EGenerationStage.TerrainPainting)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.TerrainPainting}";
+
         yield return new WaitForSeconds(1f);
 
         // paint the terrain
         Perform_TerrainPainting();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.ObjectPlacement, "Placing object");
+        stageText.text = $"{((int)EGenerationStage.ObjectPlacement)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.ObjectPlacement}";
+
         yield return new WaitForSeconds(1f);
 
         // place the object
@@ -181,16 +198,25 @@ public class ProcGenManager : MonoBehaviour
 
         // paint the details
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.DetailPainting, "Painting details");
+        stageText.text = $"{((int)EGenerationStage.DetailPainting)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.DetailPainting}";
+
         yield return new WaitForSeconds(1f);
 
         Perform_DetailPainting();
 
-        if (reportStatus != null) reportStatus.Invoke(EGenerationStage.Complete, "Generation Complete");
-        Debug.Log("Generation completed, you can be happy or not if you have an issue");
+        if (reportStatus != null) reportStatus.Invoke(EGenerationStage.PlacingPlayer, "PlacingPlayer");
+        stageText.text = $"{((int)EGenerationStage.PlacingPlayer)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.PlacingPlayer}";
+
+        yield return new WaitForSeconds(1f);
 
         EnablePlayerAfterGeneration();
-
         Perform_SpecifiqueSpawn();
+
+        if (reportStatus != null) reportStatus.Invoke(EGenerationStage.Complete, "Generation Complete");
+        stageText.text = $"{((int)EGenerationStage.Complete)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.Complete}";
+
+        GenerationCanvas.SetActive(false);
+        Debug.Log("Generation completed, you can be happy or not if you have an issue");
     }
 
 
