@@ -11,6 +11,8 @@ public class DontDestroyOnLoadObject : MonoBehaviour
 
     private void Awake()
     {
+
+
         if (instance != null)
         {
             Debug.LogWarning("More than one DontDestroyOnLoadObject in the scene. Destroying the newest one");

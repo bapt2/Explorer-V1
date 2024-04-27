@@ -2249,6 +2249,7 @@ MonoBehaviour:
   deleteWarningPanel: {fileID: 235741865}
   startButton: {fileID: 1464050904}
   createButton: {fileID: 1811975357}
+  gameOverMenu: {fileID: 0}
 --- !u!4 &730230202
 Transform:
   m_ObjectHideFlags: 0
@@ -7425,6 +7426,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7341762849122903020, guid: 26f7992e00f54c0438bba48676e3b923, type: 3}
+      propertyPath: fileName
+      value: Player Data
+      objectReference: {fileID: 0}
     - target: {fileID: 7341762849122903020, guid: 26f7992e00f54c0438bba48676e3b923, type: 3}
       propertyPath: disableDataPersistence
       value: 0

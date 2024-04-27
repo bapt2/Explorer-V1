@@ -45,6 +45,8 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
     private void Awake()
     {
+
+
         if (instance != null)
         {
             Debug.LogWarning("more than one instance of inventory Manager in the scene, Destroying the newest one");
@@ -59,7 +61,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !inventoryIsOpen && SceneManager.GetActiveScene().name != "Main Menu")
+        if (Input.GetKeyDown(KeyCode.I) && !inventoryIsOpen && SceneManager.GetActiveScene().name != "Main Menu" && !PlayerStatsManager.instance.die)
         {
             inventoryPanel.SetActive(true);
             inventoryIsOpen = true;
@@ -68,7 +70,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             CameraController.instance.enabled = false;
             DisplayItemPanel();
         }
-        else if (Input.GetKeyDown(KeyCode.I) && inventoryIsOpen && SceneManager.GetActiveScene().name != "Main Menu")
+        else if (Input.GetKeyDown(KeyCode.I) && inventoryIsOpen && SceneManager.GetActiveScene().name != "Main Menu" && !PlayerStatsManager.instance.die)
         {
             inventoryPanel.SetActive(false);
             inventoryIsOpen = false;

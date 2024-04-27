@@ -17,6 +17,8 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
     public float maxStamina = 150;
     public float currentStamina;
 
+    public bool die = false;
+
     public static PlayerStatsManager instance;
 
     private void Awake()
@@ -32,6 +34,57 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
     }
 
     private void Start()
+    {
+        SetSliderValue();
+    }
+
+    private void Update()
+    {
+        if (currentHealth <= 0)
+        {
+            IsDie();
+        }
+
+    }
+
+    public void ResetStats()
+    {
+        currentHealth = maxHealth;
+        currentBreath = maxBreath;
+        currentStamina = maxStamina;
+    }
+
+    public void IsDie()
+    {
+        die = true;
+
+        if (InventoryManager.instance.inventoryIsOpen)
+        {
+            InventoryManager.instance.inventoryPanel.SetActive(false);
+            InventoryManager.instance.inventoryIsOpen = false;
+            InventoryManager.instance.enabled = false;
+        }
+        else if (!InventoryManager.instance.inventoryIsOpen)
+        {
+            PlayerController.instance.enabled = false;
+            CameraController.instance.enabled = false;
+        }
+        GameOverManager.instance.gameOverMenu.SetActive(true);
+    }
+
+    public void IsAlive()
+    {
+        GameOverManager.instance.gameOverMenu.SetActive(false);
+
+        PlayerController.instance.enabled = true;
+        CameraController.instance.enabled = true;
+        InventoryManager.instance.enabled = true;
+        ResetStats();
+        SetSliderValue();
+        die = false;
+    }
+
+    public void SetSliderValue()
     {
         healthBar.SetValue(currentHealth);
         staminaBar.SetValue(currentStamina);

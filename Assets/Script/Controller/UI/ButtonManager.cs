@@ -20,7 +20,6 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] Button createButton;
     #endregion
 
-
     public static ButtonManager instance;
 
     private void Awake()
@@ -37,13 +36,7 @@ public class ButtonManager : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Main Menu" && DataPersistanceManager.instance.dataExist)
-            startButton.onClick.AddListener(FindObjectOfType<DataPersistanceManager>().StartGameButton);
-        else if (SceneManager.GetActiveScene().name == "Main Menu" && !DataPersistanceManager.instance.dataExist)
-        {
-            startButton.onClick.AddListener(WorldCreationButton);
-            createButton.onClick.AddListener(DataPersistanceManager.instance.StartGameButton);
-        }
+        CheckSave();
     }
 
     #region MainMenu
@@ -186,4 +179,24 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+
+    #region GameOver Menu
+
+
+
+
+    public void CheckSave()
+    {
+        if (SceneManager.GetActiveScene().name == "Main Menu" && DataPersistanceManager.instance.dataExist)
+        {
+            startButton.onClick.AddListener(FindObjectOfType<DataPersistanceManager>().StartGameButton);
+            Debug.Log(startButton.onClick);
+        }
+        else if (SceneManager.GetActiveScene().name == "Main Menu" && !DataPersistanceManager.instance.dataExist)
+        {
+            startButton.onClick.AddListener(WorldCreationButton);
+            createButton.onClick.AddListener(DataPersistanceManager.instance.StartGameButton);
+        }
+    }
+    #endregion
 }
