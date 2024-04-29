@@ -5,7 +5,7 @@ public class WaterScript : MonoBehaviour
 {
     public bool isUnderWater = false;
 
-    private void Update()
+   /* private void Update()
     {
         if (isUnderWater)
         {
@@ -17,7 +17,7 @@ public class WaterScript : MonoBehaviour
 
         else if (PlayerStatsManager.instance.currentBreath == PlayerStatsManager.instance.maxBreath && !isUnderWater)
             PlayerStatsManager.instance.breathBar.gameObject.SetActive(false);
-    }
+    }*/
 
     private void OnTriggerStay(Collider other)
     {
