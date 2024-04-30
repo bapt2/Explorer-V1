@@ -7,15 +7,17 @@ TagManager:
   - Ground
   - PortalRange
   - PortalRangeReturn
+  - PickAble
+  - Head
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Portal
   - Water
   - UI
-  - 
-  - 
+  - Plant
+  - Structures
   - 
   - 
   - 
