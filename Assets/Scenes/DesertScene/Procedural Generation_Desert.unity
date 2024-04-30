@@ -894,6 +894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenerationCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1463039325801656230, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 6056367885566248678, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -979,6 +983,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+--- !u!1 &888525102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 171927552257630629, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+  m_PrefabInstance: {fileID: 888525101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &888525103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5186279146613639079, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+  m_PrefabInstance: {fileID: 888525101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &959399373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,8 +1366,8 @@ MonoBehaviour:
   seed: -1962184341
   randomiseSeedEveryTime: 1
   Debug_EnableObjectPlacers: 0
-  GenerationCanvas: {fileID: 0}
-  stageText: {fileID: 0}
+  GenerationCanvas: {fileID: 888525102}
+  stageText: {fileID: 888525103}
 --- !u!64 &1068094253
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1917,6 +1937,10 @@ PrefabInstance:
     - target: {fileID: 6791467103421871281, guid: e0d793542887fb64cbb90fa3eb6a8553, type: 3}
       propertyPath: m_Name
       value: DayNightCycle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791467103421871281, guid: e0d793542887fb64cbb90fa3eb6a8553, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7423083390357592473, guid: e0d793542887fb64cbb90fa3eb6a8553, type: 3}
       propertyPath: m_LocalPosition.x

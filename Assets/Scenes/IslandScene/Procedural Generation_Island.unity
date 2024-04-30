@@ -734,8 +734,8 @@ MonoBehaviour:
   seed: 1258549327
   randomiseSeedEveryTime: 1
   Debug_EnableObjectPlacers: 0
-  GenerationCanvas: {fileID: 0}
-  stageText: {fileID: 0}
+  GenerationCanvas: {fileID: 1601361456}
+  stageText: {fileID: 1601361457}
 --- !u!64 &845908027
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1194,6 +1194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenerationCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1463039325801656230, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 6056367885566248678, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1279,6 +1283,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+--- !u!1 &1601361456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 171927552257630629, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+  m_PrefabInstance: {fileID: 1601361455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1601361457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5186279146613639079, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+  m_PrefabInstance: {fileID: 1601361455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1746655423
 PrefabInstance:
   m_ObjectHideFlags: 0
