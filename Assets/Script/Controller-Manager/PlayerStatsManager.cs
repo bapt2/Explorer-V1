@@ -87,7 +87,7 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
     public void SetSliderValue()
     {
         healthBar.SetMaxValue(maxHealth);
-        breathBar.SetMaxValue(maxStamina);
+        breathBar.SetMaxValue(maxBreath);
         staminaBar.SetMaxValue(maxStamina);
     }
 

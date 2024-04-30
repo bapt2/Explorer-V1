@@ -4,20 +4,19 @@ using UnityEngine;
 public class WaterScript : MonoBehaviour
 {
     public bool isUnderWater = false;
-
-   /* private void Update()
+    private void Update()
     {
-        if (isUnderWater)
+        if (isUnderWater && !PlayerStatsManager.instance.die)
         {
             PlayerStatsManager.instance.breathBar.gameObject.SetActive(true);
             WaterBreathingDecrease();
         }
-        else if (!isUnderWater && PlayerStatsManager.instance.currentBreath < PlayerStatsManager.instance.maxBreath)
+        else if (!isUnderWater && PlayerStatsManager.instance.currentBreath < PlayerStatsManager.instance.maxBreath && !PlayerStatsManager.instance.die)
             WaterBreathingRegen();
 
         else if (PlayerStatsManager.instance.currentBreath == PlayerStatsManager.instance.maxBreath && !isUnderWater)
             PlayerStatsManager.instance.breathBar.gameObject.SetActive(false);
-    }*/
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -52,7 +51,7 @@ public class WaterScript : MonoBehaviour
     public IEnumerator WaterBreathingDecreaseCoroutine()
     {
         if (PlayerStatsManager.instance.currentBreath > 0)
-            PlayerStatsManager.instance.currentBreath -= 0.1f;
+            PlayerStatsManager.instance.currentBreath -= 0.05f;
 
         else if (PlayerStatsManager.instance.currentBreath < 0)
             PlayerStatsManager.instance.currentBreath = 0;
