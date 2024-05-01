@@ -23,17 +23,16 @@ public class DayNightCycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float unscaleTime = Time.unscaledTime;
 
         if (isNight)
             Night();
         if (isDay)
             Day();
 
-        localRot.y = unscaleTime * sensitivity;
+        localRot.y = Time.timeSinceLevelLoad * sensitivity;
 
         Quaternion qt = Quaternion.Euler(localRot.y, 0f, 0f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, qt, unscaleTime * orbitDamping);
+        transform.rotation = Quaternion.Lerp(transform.rotation, qt, Time.deltaTime * orbitDamping);
         
         if (Mathf.Approximately(Mathf.FloorToInt(localRot.y / 360f), numDay))
         {

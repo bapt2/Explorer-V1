@@ -45,6 +45,13 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
             IsDie();
         }
 
+        WaterBreathingRegen();
+        if (currentBreath == maxBreath)
+        {
+            breathBar.gameObject.SetActive(false);
+            breathBar.SetMaxValue(maxBreath);
+        }
+
     }
 
     public void ResetStats()
@@ -82,6 +89,25 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
         ResetStats();
         SetSliderValue();
         die = false;
+    }
+
+
+    public void WaterBreathingRegen()
+    {
+        if (currentBreath >= 0 && currentBreath < maxBreath && (!WaterScript.instance.isUnderWater || WaterScript.instance == null) && !PlayerStatsManager.instance.die)
+            StartCoroutine(WaterBreathingRegenCoroutine());
+    }
+
+    public IEnumerator WaterBreathingRegenCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        if (currentBreath < maxBreath)
+            currentBreath += 1;
+        else
+        {
+            currentBreath = maxBreath;
+        }
+        breathBar.SetValue(currentBreath);
     }
 
     public void SetSliderValue()

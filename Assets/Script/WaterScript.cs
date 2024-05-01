@@ -4,6 +4,19 @@ using UnityEngine;
 public class WaterScript : MonoBehaviour
 {
     public bool isUnderWater = false;
+
+    public static WaterScript instance;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("more than one instance of water script in the scene, destroy the newest one");
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
+
     private void Update()
     {
         if (isUnderWater && !PlayerStatsManager.instance.die)
@@ -11,11 +24,7 @@ public class WaterScript : MonoBehaviour
             PlayerStatsManager.instance.breathBar.gameObject.SetActive(true);
             WaterBreathingDecrease();
         }
-        else if (!isUnderWater && PlayerStatsManager.instance.currentBreath < PlayerStatsManager.instance.maxBreath && !PlayerStatsManager.instance.die)
-            WaterBreathingRegen();
 
-        else if (PlayerStatsManager.instance.currentBreath == PlayerStatsManager.instance.maxBreath && !isUnderWater)
-            PlayerStatsManager.instance.breathBar.gameObject.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -73,21 +82,5 @@ public class WaterScript : MonoBehaviour
         yield return new WaitForSeconds(2);
     }
 
-    public void WaterBreathingRegen()
-    {
-        if (PlayerStatsManager.instance.currentBreath >= 0 && PlayerStatsManager.instance.currentBreath < PlayerStatsManager.instance.maxBreath && !isUnderWater)
-        {
-            StartCoroutine(WaterBreathingRegenCoroutine());
-        }
-    }
 
-    public IEnumerator WaterBreathingRegenCoroutine()
-    {
-        yield return new WaitForSeconds(2);
-        if (PlayerStatsManager.instance.currentBreath < PlayerStatsManager.instance.maxBreath)
-            PlayerStatsManager.instance.currentBreath += 1;
-        else
-            PlayerStatsManager.instance.currentBreath = PlayerStatsManager.instance.maxBreath;
-        PlayerStatsManager.instance.breathBar.SetValue(PlayerStatsManager.instance.currentBreath);
-    }
 }
