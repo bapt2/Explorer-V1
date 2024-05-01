@@ -42,11 +42,6 @@ public class DataPersistanceManager : MonoBehaviour
         }
 
 
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
-        if (dataHandler.Load(selectedProfileId) != null)
-            dataExist = true;
-        else
-            dataExist = false;
     }
 
     private void OnEnable()
@@ -59,6 +54,12 @@ public class DataPersistanceManager : MonoBehaviour
     {
         currentScene = scene.name;
 
+
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        if (dataHandler.Load(selectedProfileId) != null)
+            dataExist = true;
+        else
+            dataExist = false;
 
         if (scene.name == ("Procedural Generation_Forest") || scene.name == ("Procedural Generation_Desert") || scene.name == ("Procedural Generation_Island"))
             isProcGenScene = true;

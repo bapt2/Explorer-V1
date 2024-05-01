@@ -1194,26 +1194,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenerationCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1296646271807971296, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1495.3457
-      objectReference: {fileID: 0}
-    - target: {fileID: 1296646271807971296, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 763.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1296646271807971296, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1463039325801656230, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
-      propertyPath: m_SortingOrder
-      value: 99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5186279146613639079, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6056367885566248678, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
       propertyPath: m_Pivot.x
       value: 0
