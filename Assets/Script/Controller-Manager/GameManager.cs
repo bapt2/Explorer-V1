@@ -24,12 +24,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        PlayerController.instance.transform.position = data.playerPosition;
+        if (DataPersistanceManager.instance.currentScene == "Hub")
+            PlayerController.instance.transform.position = data.playerPosition;
     }
 
     public void SaveData(GameData data)
     {
-        if (!DataPersistanceManager.instance.isProcGenScene)
+        if (DataPersistanceManager.instance.currentScene == "Hub")
             data.playerPosition = PlayerController.instance.transform.position;
     }
 }

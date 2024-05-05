@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class InventoryManager : MonoBehaviour, IDataPersistence
 {
@@ -33,10 +34,10 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     public int fishPlace = 10;
     public int plantPlace = 20;
 
-    public List<BaseItem> itemList = new();
-    public List<InsectItem> insectItemList = new();
-    public List<FishItem> fishItemList = new();
-    public List<PlantItem> plantItemList = new();
+    public List<BaseItem> itemList;
+    public List<BaseItem> insectItemList;
+    public List<BaseItem> fishItemList;
+    public List<BaseItem> plantItemList;
 
     GameObject _slotPrefab;
     ItemSlot itemslot;
@@ -45,8 +46,6 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
     private void Awake()
     {
-
-
         if (instance != null)
         {
             Debug.LogWarning("more than one instance of inventory Manager in the scene, Destroying the newest one");
@@ -55,7 +54,6 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         }
 
         instance = this;
-
     }
 
     // Update is called once per frame
@@ -85,7 +83,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         insectPanel.SetActive(false);
         fishPanel.SetActive(false);
         plantPanel.SetActive(false);
-        CreateItemSlot(itemList);
+        CreateItemSlot(itemList, itemPlace, itemContent, itemPanel);
     }
 
     public void DisplayInsectPanel()
@@ -94,7 +92,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         insectPanel.SetActive(true);
         fishPanel.SetActive(false);
         plantPanel.SetActive(false);
-        CreateItemSlot(null, insectItemList);
+        CreateItemSlot(insectItemList, insectPlace, insectContent, insectPanel);
 
     }
 
@@ -104,7 +102,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         insectPanel.SetActive(false);
         fishPanel.SetActive(true);
         plantPanel.SetActive(false);
-        CreateItemSlot(null, null, fishItemList);
+        CreateItemSlot(fishItemList, fishPlace, fishContent, fishPanel);
 
     }
 
@@ -114,49 +112,41 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         insectPanel.SetActive(false);
         fishPanel.SetActive(false);
         plantPanel.SetActive(true);
-        CreateItemSlot(null, null, null, plantItemList);
+        CreateItemSlot(plantItemList, plantPlace, plantContent, plantPanel);
 
     }
 
-    public void CreateItemSlot(List<BaseItem> _itemList = null, List<InsectItem> _insectItemList = null, List<FishItem> _fishItemList = null, List<PlantItem> _plantItemList = null)
+    public void CreateItemSlot(List<BaseItem> currentList, int maxPlaces, GameObject currentContent, GameObject currentPanel)
     {
-        if (_itemList == null && _insectItemList == null && _fishItemList == null && _plantItemList == null)
-        {
-            Debug.LogWarning("At least 1 of the list must be asigned");
-            return;
-        }
 
-        else if (_itemList != null)
-        {
-            foreach (Transform child in itemContent.transform)
+            foreach (Transform child in currentContent.transform)
             {
-                if (itemPanel != null)
+                if (currentPanel != null)
                 {
                     Destroy(child.gameObject);
                 }
             }
 
-            for (int i = 0; i < itemPlace; i++)
+            for (int i = 0; i < maxPlaces; i++)
             {
                 _slotPrefab = null;
-                if (i <= _itemList.Count - 1)
+                if (i <= currentList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-                    _slotPrefab.transform.SetParent(itemContent.transform);
+                    _slotPrefab.transform.SetParent(currentContent.transform);
                     itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
                     TextMeshProUGUI itemName = itemslot.itemSlotName;
                     Image sprite = itemslot.itemSlotIcon;
 
                     itemslot.slotIndex = i;
-                    itemName.text = itemList[i].itemName;
-                    sprite.sprite = itemList[i].sprite;
-
+                    itemName.text = currentList[i].itemName;
+                    sprite.sprite = DontDestroyOnLoadObject.instance.itemSpriteDataBase.CheckSpriteByID(currentList[i].spriteID);
                 }
-                else if (i > _itemList.Count - 1)
+                else if (i > currentList.Count - 1)
                 {
                     _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-                    _slotPrefab.transform.SetParent(itemContent.transform);
+                    _slotPrefab.transform.SetParent(currentContent.transform);
                     itemslot = _slotPrefab.GetComponent<ItemSlot>();
 
                     TextMeshProUGUI itemName = itemslot.itemSlotName;
@@ -168,166 +158,14 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
                 }
             }
         }
-
-        else if (_insectItemList != null)
-        {
-            foreach (Transform child in insectContent.transform)
-            {
-                if (insectPanel != null)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-
-            for (int i = 0; i < insectPlace; i++)
-            {
-                _slotPrefab = null;
-                if (i <= _insectItemList.Count - 1)
-                {
-                    _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-                    _slotPrefab.transform.SetParent(insectContent.transform);
-                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
-
-                    TextMeshProUGUI itemName = itemslot.itemSlotName;
-                    Image sprite = itemslot.itemSlotIcon;
-
-                    itemslot.slotIndex = i;
-                    itemName.text = insectItemList[i].itemName;
-                    sprite.sprite = insectItemList[i].sprite;
-                }
-                else if (i > _insectItemList.Count - 1)
-                {
-                    _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-                    _slotPrefab.transform.SetParent(insectContent.transform);
-                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
-
-                    TextMeshProUGUI itemName = itemslot.itemSlotName;
-                    Image sprite = itemslot.itemSlotIcon;
-
-                    itemslot.slotIndex = i;
-                    itemName.text = null;
-                    sprite.sprite = null;
-                }
-            }
-        }
-
-        else if (_fishItemList != null)
-        {
-            foreach (Transform child in fishContent.transform)
-            {
-                if (fishPanel != null)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-
-            for (int i = 0; i < fishPlace; i++)
-            {
-                _slotPrefab = null;
-
-                if (i <= _fishItemList.Count - 1)
-                {
-                    _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-                    _slotPrefab.transform.SetParent(fishContent.transform);
-                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
-
-                    TextMeshProUGUI itemName = itemslot.itemSlotName;
-                    Image sprite = itemslot.itemSlotIcon;
-
-                    itemslot.slotIndex = i;
-                    itemName.text = fishItemList[i].itemName;
-                    sprite.sprite = fishItemList[i].sprite;
-
-                }
-                else if (i > _fishItemList.Count - 1)
-                {
-                    _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-                    _slotPrefab.transform.SetParent(fishContent.transform);
-                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
-
-                    TextMeshProUGUI itemName = itemslot.itemSlotName;
-                    Image sprite = itemslot.itemSlotIcon;
-
-                    itemslot.slotIndex = i;
-                    itemName.text = null;
-                    sprite.sprite = null;
-                }
-            }
-        }
-
-        else if (_plantItemList != null)
-        {
-            foreach (Transform child in plantContent.transform)
-            {
-                if (plantPanel != null)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-
-            for (int i = 0; i < plantPlace; i++)
-            {
-                _slotPrefab = null;
-
-                if (i <= _plantItemList.Count - 1)
-                {
-                    _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-                    _slotPrefab.transform.SetParent(plantContent.transform);
-                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
-
-                    TextMeshProUGUI itemName = itemslot.itemSlotName;
-                    Image sprite = itemslot.itemSlotIcon;
-
-                    itemslot.slotIndex = i;
-                    itemName.text = plantItemList[i].itemName;
-                    sprite.sprite = plantItemList[i].sprite;
-                }
-                else if (i > _plantItemList.Count - 1)
-                {
-                    _slotPrefab = Instantiate(slotPrefab, transform.position, transform.rotation);
-                    _slotPrefab.transform.SetParent(plantContent.transform);
-                    itemslot = _slotPrefab.GetComponent<ItemSlot>();
-
-                    TextMeshProUGUI itemName = itemslot.itemSlotName;
-                    Image sprite = itemslot.itemSlotIcon;
-
-                    itemslot.slotIndex = i;
-                    itemName.text = null;
-                    sprite.sprite = null;
-                }
-            }
-        }
-    }
-
-    #region full inventory
-
-
-    public IEnumerator ItemInventoryFull()
+    
+    public IEnumerator ItemInventoryFull(GameObject objectMessage)
     {
-        itemFull.SetActive(true);
+        objectMessage.SetActive(true);
         yield return new WaitForSeconds(3f);
-        itemFull.SetActive(false);
+        objectMessage.SetActive(false);
     }
-    public IEnumerator InsectInventoryFull()
-    {
-        insectFull.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        insectFull.SetActive(false);
-    }
-    public IEnumerator FishInventoryFull()
-    {
-        fishFull.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        fishFull.SetActive(false);
-    }
-    public IEnumerator PlantInventoryFull()
-    {
-        plantFull.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        plantFull.SetActive(false);
-    }
-    #endregion
-
+    
     #region pick up message
     public void DisplayPickUpMessage()
     {
@@ -347,10 +185,43 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         fishPlace = data.fishPlace;
         plantPlace = data.plantPlace;
 
-        itemList = data.itemList;
-        insectItemList = data.insectItemList;
-        fishItemList = data.fishItemList;
-        plantItemList = data.plantItemList;
+
+        itemList = new();
+        insectItemList = new();
+        fishItemList = new();
+        plantItemList = new();
+
+        for (int item = 0; item < data.itemList.Count; item++)
+        {
+            itemList.Add(ScriptableObject.CreateInstance<BaseItem>());
+            itemList[item].itemType = data.itemList[item].itemType;
+            itemList[item].itemName = data.itemList[item].itemName;
+            itemList[item].spriteID = data.itemList[item].spriteID;
+        }
+
+        for (int item = 0; item < data.insectItemList.Count; item++)
+        {
+            insectItemList.Add(ScriptableObject.CreateInstance<BaseItem>());
+            insectItemList[item].itemType = data.insectItemList[item].itemType;
+            insectItemList[item].itemName = data.insectItemList[item].itemName;
+            insectItemList[item].spriteID = data.insectItemList[item].spriteID;
+        }
+
+        for (int item = 0; item < data.fishItemList.Count; item++)
+        {
+            fishItemList.Add(ScriptableObject.CreateInstance<BaseItem>());
+            fishItemList[item].itemType = data.fishItemList[item].itemType;
+            fishItemList[item].itemName = data.fishItemList[item].itemName;
+            fishItemList[item].spriteID = data.fishItemList[item].spriteID;
+        }
+
+        for (int item = 0; item < data.plantItemList.Count; item++)
+        {
+            plantItemList.Add(ScriptableObject.CreateInstance<BaseItem>());
+            plantItemList[item].itemType = data.plantItemList[item].itemType;
+            plantItemList[item].itemName = data.plantItemList[item].itemName;
+            plantItemList[item].spriteID = data.plantItemList[item].spriteID;
+        }
     }
 
     public void SaveData(GameData data)
@@ -360,9 +231,41 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         data.fishPlace = fishPlace;
         data.plantPlace = plantPlace;
 
-        data.itemList = itemList;
-        data.insectItemList = insectItemList;
-        data.fishItemList = fishItemList;
-        data.plantItemList = plantItemList;
+        data.itemList = new();
+        data.insectItemList = new();
+        data.fishItemList = new();
+        data.plantItemList = new();
+
+        for (int item = 0; item < itemList.Count; item++)
+        {
+            data.itemList.Add(new AttributesItemData());
+            data.itemList[item].itemType = itemList[item].itemType;
+            data.itemList[item].itemName = itemList[item].itemName;
+            data.itemList[item].spriteID = plantItemList[item].spriteID;
+        }
+
+        for (int item = 0; item < insectItemList.Count; item++)
+        {
+            data.insectItemList.Add(new AttributesItemData());
+            data.insectItemList[item].itemType = insectItemList[item].itemType;
+            data.insectItemList[item].itemName = insectItemList[item].itemName;
+            data.insectItemList[item].spriteID = insectItemList[item].spriteID;
+        }
+
+        for (int item = 0; item < fishItemList.Count; item++)
+        {
+            data.fishItemList.Add(new AttributesItemData());
+            data.fishItemList[item].itemType = fishItemList[item].itemType;
+            data.fishItemList[item].itemName = fishItemList[item].itemName;
+            data.fishItemList[item].spriteID = fishItemList[item].spriteID;
+        }
+
+        for (int item = 0; item < plantItemList.Count; item++)
+        {
+            data.plantItemList.Add(new AttributesItemData());
+            data.plantItemList[item].itemType = plantItemList[item].itemType;
+            data.plantItemList[item].itemName = plantItemList[item].itemName;
+            data.plantItemList[item].spriteID = plantItemList[item].spriteID;
+        }
     }
 }

@@ -8,8 +8,6 @@ public class GameData
 {
     public string worldName;
 
-    public SerializableDictionary<string, bool> enciclopedie;
-
     public float maxHealth;
     public float currentHealth;
 
@@ -26,15 +24,14 @@ public class GameData
     public int fishPlace;
     public int plantPlace;
 
-    public List<BaseItem> itemList;
-    public List<InsectItem> insectItemList;
-    public List<FishItem> fishItemList;
-    public List<PlantItem> plantItemList;
+    public List<AttributesItemData> itemList;
+    public List<AttributesItemData> insectItemList;
+    public List<AttributesItemData> fishItemList;
+    public List<AttributesItemData> plantItemList;
 
     public GameData()
     {
         worldName = "New World";
-        enciclopedie = new SerializableDictionary<string, bool>();
 
         maxHealth = 100;
         currentHealth = maxHealth;

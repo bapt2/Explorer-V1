@@ -94,7 +94,7 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
 
     public void WaterBreathingRegen()
     {
-        if (currentBreath >= 0 && currentBreath < maxBreath && (!WaterScript.instance.isUnderWater || WaterScript.instance == null) && !PlayerStatsManager.instance.die)
+        if (currentBreath >= 0 && currentBreath < maxBreath && (WaterScript.instance == null || !WaterScript.instance.isUnderWater) && !PlayerStatsManager.instance.die)
             StartCoroutine(WaterBreathingRegenCoroutine());
     }
 

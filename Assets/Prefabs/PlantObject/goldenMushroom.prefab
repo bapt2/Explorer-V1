@@ -98,10 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa8590063c91b4428799a264a804bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  insectItem: {fileID: 0}
-  fishItem: {fileID: 0}
-  plantItem: {fileID: 11400000, guid: b30e68d757c49274baed93e24526c880, type: 2}
+  item: {fileID: 11400000, guid: 08cea23f6019cb54092894a953631d86, type: 2}
   isInRange: 0
 --- !u!65 &-7622480610775004613
 BoxCollider:

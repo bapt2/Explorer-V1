@@ -54,6 +54,7 @@ public class DataPersistanceManager : MonoBehaviour
     {
         currentScene = scene.name;
 
+        DontDestroyOnLoadObject.instance.DontActivateOnMainMenuScene();
 
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         if (dataHandler.Load(selectedProfileId) != null)
@@ -103,8 +104,6 @@ public class DataPersistanceManager : MonoBehaviour
     {
         // create a new game which will initialize our data to a clean slate
         SaveGame();
-
-        LoadGame();
 
         LevelLoader.instance.LoadLevel(1);
     }

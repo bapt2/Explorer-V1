@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroyOnLoadObject : MonoBehaviour
 {
-    public GameObject playerInterFace;
+    public GameObject playerInterface;
+    public GameObject portalInterface;
+    public ItemSpriteDataBase itemSpriteDataBase;
 
     public static DontDestroyOnLoadObject instance { get; private set; }
 
@@ -23,9 +25,13 @@ public class DontDestroyOnLoadObject : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+    }
+
+    public void DontActivateOnMainMenuScene()
+    {
         if (SceneManager.GetActiveScene().name == "Main Menu")
-            playerInterFace.SetActive(false);
+            playerInterface.SetActive(false);
         else
-            playerInterFace.SetActive(true);
+            playerInterface.SetActive(true);
     }
 }
