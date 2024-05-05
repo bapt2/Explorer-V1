@@ -999,6 +999,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &888525104 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1647115245624057303, guid: 696b6ccbf09eb4c408477a5e5bf10a68, type: 3}
+  m_PrefabInstance: {fileID: 888525101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &959399373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,6 +1373,7 @@ MonoBehaviour:
   Debug_EnableObjectPlacers: 0
   GenerationCanvas: {fileID: 888525102}
   stageText: {fileID: 888525103}
+  animator: {fileID: 888525104}
 --- !u!64 &1068094253
 MeshCollider:
   m_ObjectHideFlags: 0

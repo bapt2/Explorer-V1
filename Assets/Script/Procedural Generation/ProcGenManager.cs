@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -87,6 +88,7 @@ public class ProcGenManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject GenerationCanvas;
     [SerializeField] TextMeshProUGUI stageText;
+    [SerializeField] Animator animator;
 
     GenerationData data;
 
@@ -105,6 +107,8 @@ public class ProcGenManager : MonoBehaviour
 
     public IEnumerator AsyncRegenerateWorld(System.Action<EGenerationStage, string> reportStatus = null)
     {
+        animator.SetBool("LoadingFinish", false);
+
         int workingSeed = seed;
 
         if (randomiseSeedEveryTime)
@@ -215,6 +219,7 @@ public class ProcGenManager : MonoBehaviour
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.Complete, "Generation Complete");
         stageText.text = $"{((int)EGenerationStage.Complete)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.Complete}";
 
+        animator.SetBool("LoadingFinish", true);
         GenerationCanvas.SetActive(false);
         Debug.Log("Generation completed, you can be happy or not if you have an issue");
     }
