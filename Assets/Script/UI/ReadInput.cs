@@ -18,7 +18,8 @@ public class ReadInput : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        data.worldName = input;
+        if (input != "")
+            data.worldName = input;
     }
 
 }
