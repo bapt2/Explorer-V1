@@ -78,6 +78,7 @@ public class DataPersistanceManager : MonoBehaviour
                 SaveGame();
                 GameOverManager.instance.hasRespawn = false;
                 PlayerStatsManager.instance.breathBar.gameObject.SetActive(false);
+                PlayerController.instance.gameObject.SetActive(true);
                 return;
             }
             PlayerController.instance.gameObject.SetActive(true);

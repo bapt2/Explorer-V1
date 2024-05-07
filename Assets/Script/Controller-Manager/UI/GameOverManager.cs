@@ -31,14 +31,16 @@ public class GameOverManager : MonoBehaviour
 
     public void MainMenuButton()
     {
-        PlayerStatsManager.instance.IsAlive();
-        PlayerStatsManager.instance.gameObject.SetActive(false);
+        hasRespawn = true;
 
         SceneManager.LoadScene("Main Menu");
+
+        PlayerStatsManager.instance.IsAlive();
     }
 
     public void RageQuitButton()
     {
+        hasRespawn = true;
 
         SceneManager.LoadScene("Hub");
         PlayerStatsManager.instance.IsAlive();
