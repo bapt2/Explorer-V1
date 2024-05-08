@@ -150,7 +150,7 @@ public class ProcGenManager : MonoBehaviour
             Destroy(data.objectRoot.GetChild(childIndex).gameObject);
 #endif
         }
-        DisablePlayerOnGeneration();
+        //DisablePlayerOnGeneration();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.BuildTextureMap, "Building texture map");
         stageText.text = $"{((int)EGenerationStage.BuildTextureMap)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.BuildTextureMap}";
@@ -213,8 +213,8 @@ public class ProcGenManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        EnablePlayerAfterGeneration();
-        Perform_SpecifiqueSpawn();
+       // EnablePlayerAfterGeneration();
+       // Perform_SpecifiqueSpawn();
 
         if (reportStatus != null) reportStatus.Invoke(EGenerationStage.Complete, "Generation Complete");
         stageText.text = $"{((int)EGenerationStage.Complete)} - {((int)EGenerationStage.Complete)} : {EGenerationStage.Complete}";

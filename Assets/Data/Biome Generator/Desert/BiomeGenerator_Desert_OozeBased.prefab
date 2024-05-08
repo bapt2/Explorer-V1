@@ -48,7 +48,7 @@ MonoBehaviour:
   zones:
   - biome: {fileID: 11400000, guid: 17e97a76d2b200e4290e7da406514777, type: 2}
     minDistance: 0
-    maxDistance: 1
+    maxDistance: 0.5
     biomeWeightingVsDistance:
       serializedVersion: 2
       m_Curve:
@@ -74,6 +74,36 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     startAngle: 0
+    endAngle: 180
+    insideOfAngle: 0
+  - biome: {fileID: 11400000, guid: 1ee723c1309f7ff4c8c0f787bf3d2c70, type: 2}
+    minDistance: 0.5
+    maxDistance: 1
+    biomeWeightingVsDistance:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    startAngle: 180
     endAngle: 360
     insideOfAngle: 0
   biomeSeedPointDensity: 0.1

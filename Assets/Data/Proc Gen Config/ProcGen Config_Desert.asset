@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomes:
   - biome: {fileID: 11400000, guid: 17e97a76d2b200e4290e7da406514777, type: 2}
-    wheighting: 1
+    wheighting: 0.5
+  - biome: {fileID: 11400000, guid: 1ee723c1309f7ff4c8c0f787bf3d2c70, type: 2}
+    wheighting: 0.5
   biomeGenerators: {fileID: 398780153279912220, guid: 09bce36463649504ab5e9a476323b849, type: 3}
   initialHeightModifier: {fileID: 713746363119422602, guid: 7d869c367dab69f49a8307bee64992c1, type: 3}
   HeightPostProcessingModifier: {fileID: 713746363119422602, guid: f6f10d5b5a27f204c936b9dd7e5d0fc2, type: 3}
