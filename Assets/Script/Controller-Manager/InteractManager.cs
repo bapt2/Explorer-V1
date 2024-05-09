@@ -9,10 +9,8 @@ public class InteractManager : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("PortalRange") && Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("Hey!");
             OpenPortalPanel();
-        }
+        
         else if (other.CompareTag("PortalRangeReturn") && Input.GetKeyDown(KeyCode.E))
         {
             SceneManager.LoadScene("Hub");
