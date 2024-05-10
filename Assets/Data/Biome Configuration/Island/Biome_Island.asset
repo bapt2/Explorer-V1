@@ -19,5 +19,5 @@ MonoBehaviour:
   maxDecayRate: 0.2
   heightModifier: {fileID: 296058633226560942, guid: cee8afe819af05c4ebd891464dd45ac4, type: 3}
   terrainPainter: {fileID: 3685418482067008010, guid: ed6460429038d9244a98c78c36a3e3f9, type: 3}
-  objectPlacer: {fileID: 0}
+  objectPlacer: {fileID: 5363260531851314963, guid: 53737d0dee195a84da416ab74f033be7, type: 3}
   detailPainter: {fileID: 0}
